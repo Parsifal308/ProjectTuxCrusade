@@ -1,4 +1,4 @@
-from Interfaces.IBehaviour import IBehaviour as behaviour
+from IBehaviour import IBehaviour as behaviour
 
 
 class PawnBehaviour(behaviour):
@@ -40,4 +40,4 @@ class KingBehaviour(behaviour):
     name = 'Classic king behaviour'
 
     def computeTurn(self):
-        pass
+        print('')

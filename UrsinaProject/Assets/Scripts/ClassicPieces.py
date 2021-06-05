@@ -1,4 +1,4 @@
-from Interfaces.IPiece import IPiece as piece
+from IPiece import IPiece as piece
 
 
 class Pawn(piece):

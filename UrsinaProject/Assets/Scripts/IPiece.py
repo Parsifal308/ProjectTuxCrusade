@@ -1,6 +1,5 @@
-from abc import ABC, abstractproperty
+from abc import ABC
 from enum import Enum
-
 from IBehaviour import IBehaviour as behaviour
 
 
@@ -15,5 +14,5 @@ class Team(Enum):
 class IPiece(ABC):
     name = None
     value = None
-    team = Team
-    behaviour = behaviour
+    team = type(Team)
+    behaviour = type(behaviour)

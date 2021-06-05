@@ -1,4 +1,4 @@
-from Interfaces.IBoard import IBoard as board
+from IBoard import IBoard as board
 
 
 class classicBoard(board):
@@ -7,4 +7,4 @@ class classicBoard(board):
     positions = (xSize, ySize)
 
     def SetPieces(self):  # settea las piezas para iniciar una partida de la manera original
-        pass
+        print('settea las piezas para iniciar una partida de la manera original')
