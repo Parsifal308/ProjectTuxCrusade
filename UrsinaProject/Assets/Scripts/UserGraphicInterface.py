@@ -51,21 +51,21 @@ class MainMenu(IMenu):
                                     color=color.gray,
                                     scale=(0.4, 0.075),
                                     position=(0, 0.35))
-        self.newGameButton = Button(text='Collectibles',
-                                    text_color=color.white,
-                                    color=color.gray,
-                                    scale=(0.4, 0.075),
-                                    position=(0, 0.2))
-        self.newGameButton = Button(text='Load Game',
-                                    text_color=color.white,
-                                    color=color.gray,
-                                    scale=(0.4, 0.075),
-                                    position=(0, 0.05))
-        self.newGameButton = Button(text='Settings',
-                                    text_color=color.white,
-                                    color=color.gray,
-                                    scale=(0.4, 0.075),
-                                    position=(0, -0.15))
+        self.collectiblesButton = Button(text='Collectibles',
+                                         text_color=color.white,
+                                         color=color.gray,
+                                         scale=(0.4, 0.075),
+                                         position=(0, 0.2))
+        self.loadGameButton = Button(text='Load Game',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.075),
+                                     position=(0, 0.05))
+        self.settingsButton = Button(text='Settings',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.075),
+                                     position=(0, -0.15))
         self.exitGameButton = Button(text='Exit',
                                      text_color=color.white,
                                      color=color.gray,
@@ -75,9 +75,19 @@ class MainMenu(IMenu):
 
     def open(self):
         print('Se debe abrir el menu principal de la app')
+        self.newGameButton.enable()
+        self.collectiblesButton.enable()
+        self.loadGameButton.enable()
+        self.settingsButton.enable()
+        self.exitGameButton.enable()
 
     def close(self):
         print('Se debe cerrar el menu principal')
+        self.newGameButton.disable()
+        self.collectiblesButton.disable()
+        self.loadGameButton.disable()
+        self.settingsButton.disable()
+        self.exitGameButton.disable()
 
 
 class CreateGameMenu(IMenu):
