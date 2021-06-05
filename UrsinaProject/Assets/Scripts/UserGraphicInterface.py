@@ -29,6 +29,9 @@ class OnGame(IMenu):
         print('Se debe abrir un menu dentro de la partida, donde deja guardar, cargar, salir, etc')
 
 
+
+
+
 class MainMenu(IMenu):
     name = None
     newGameButton = None
