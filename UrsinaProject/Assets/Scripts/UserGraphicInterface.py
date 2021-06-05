@@ -1,6 +1,6 @@
 from ursina import *
 from abc import ABC, abstractmethod
-import sys
+from Assets.Scripts import AppSystem
 
 
 class IMenu(ABC):
@@ -10,9 +10,9 @@ class IMenu(ABC):
     def open(self):
         pass
 
-
-def exitApp():
-    sys.exit('Regresa pronto cruzado!!')
+    @abstractmethod
+    def close(self):
+        pass
 
 
 class SettingsMenu(IMenu):
@@ -21,15 +21,18 @@ class SettingsMenu(IMenu):
     def open(self):
         print('Se debe abrir menu de configuraciones de la app')
 
+    def close(self):
+        print('Se debe cerrar el menu de configuraciones')
+
 
 class OnGame(IMenu):
     name = 'Menu principal durante la partida'
 
     def open(self):
-        print('Se debe abrir un menu dentro de la partida, donde deja guardar, cargar, salir, etc')
+        print('Se debe abrir un menu de pausa dentro de la partida, donde deja guardar, cargar, salir, etc')
 
-
-
+    def close(self):
+        print('Se debe cerrar el menu de pausa')
 
 
 class MainMenu(IMenu):
@@ -68,10 +71,13 @@ class MainMenu(IMenu):
                                      color=color.gray,
                                      scale=(0.4, 0.075),
                                      position=(0, -0.35))
-        self.exitGameButton.on_click = exitApp
+        self.exitGameButton.on_click = AppSystem.exitApp
 
     def open(self):
         print('Se debe abrir el menu principal de la app')
+
+    def close(self):
+        print('Se debe cerrar el menu principal')
 
 
 class CreateGameMenu(IMenu):
@@ -80,9 +86,15 @@ class CreateGameMenu(IMenu):
     def open(self):
         print('Se debe abrir un menu para crear una nueva partida')
 
+    def close(self):
+        print('Se debe cerrar el menu de creacion de partida')
+
 
 class CollectibleMenu(IMenu):
     name = 'Menu de desbloqueables'
 
     def open(self):
         print('Se debe abrir un menu para visualizar y seleccionar los objetos desbloqueables')
+
+    def close(self):
+        print('Se debe cerrar el menu de coleccionables')
