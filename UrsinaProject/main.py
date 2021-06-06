@@ -13,8 +13,10 @@ appWindow = system.appWindows()
 
 
 #x = gui.SettingsMenu() #testeo(Mantener descomentado)
-x=gui.OnGame()
 
+x = gui.OnGame()
+#x = gui.OnGame()
+#x.open()
 
 # ----------------------------------------------------------------------------------------------
 tuxCrusadeApp.run()  # SE EJECUTA LA APP

@@ -1,6 +1,6 @@
 from ursina import *
 from abc import ABC, abstractmethod
-from UrsinaProject.Assets.Scripts import AppSystem
+from Assets.Scripts import AppSystem
 
 class IMenu(ABC):
     name = None
@@ -21,7 +21,7 @@ class SettingsMenu(IMenu):
     fullscreenButton = None  # Boton pantalla completa
     borderButton = None  # Boton de bordes con o sin
     fpsCounterButton = None  # Contador de fps
-    lenguageButton = None  # idioma
+    languageButton = None  # idioma
 
     def __init__(self):
         self.name = 'Creando menu de inicio del juego'
@@ -67,14 +67,14 @@ class OnGame(IMenu):
     exitGameButton = None #Volver al menú de inicio
     backButton = None #Salir del menú de pausa y volver a la partida
 
-    def _init_(self):
+    def __init__(self):
         self.name = 'Creando el menú de pausa'
         print(self.name)
         self.saveGameButton = Button(text='Save game',
-                                 text_color=color.white,
-                                 color=color.gray,
-                                 scale=(0.4, 0.085),
-                                 position=(0, 0.35))
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.085),
+                                     position=(0, 0.35))
         self.settingsButton = Button(text='Settings',
                                      text_color=color.white,
                                      color=color.gray,
@@ -88,7 +88,7 @@ class OnGame(IMenu):
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
-                                 scale=(0.4,0.085),
+                                 scale=(0.4, 0.085),
                                  position=(0, -0.10))
 
     def open(self):
