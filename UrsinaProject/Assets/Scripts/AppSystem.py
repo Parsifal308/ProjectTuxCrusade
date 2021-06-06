@@ -21,5 +21,5 @@ class appWindows:
         window.fullscreen = False  # Pantalla completa
         window.exit_button.visible = False  # Show the in-game red X that loses the window
         window.fps_counter.enabled = True  # contador de FPS
-        window.color = color.random_color()
+        window.color = color.rgb(252.9, 8.2, 93.7)#para settings
 

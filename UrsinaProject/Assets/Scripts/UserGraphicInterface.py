@@ -55,14 +55,24 @@ class SettingsMenu(IMenu):
 
     def open(self):
         print('Se debe abrir menu de configuraciones de la app')
+        self.backButton.enable()
+        self.fullscreenButton.enable()
+        self.borderButton.enable()
+        self.fpsCounterButton.enable()
+        self.lenguageButton.enable()
 
     def close(self):
         print('Se debe cerrar el menu de configuraciones')
+        self.lenguageButton.disable()
+        self.borderButton.disable()
+        self.fpsCounterButton.disable()
+        self.backButton.disable()
+        self.fullscreenButton.disable()
 
 
 # MENU EN PAUSA
 class OnGame(IMenu):
-    name = 'Menu principal durante la partida'
+
 
     def open(self):
         print('Se debe abrir un menu de pausa dentro de la partida, donde deja guardar, cargar, salir, etc')
