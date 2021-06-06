@@ -15,8 +15,43 @@ class IMenu(ABC):
         pass
 
 
+# MENU CONFIGURACION
 class SettingsMenu(IMenu):
     name = 'Menu de configuraciones'
+    backButton = None  # Boton volver
+    fullscreenButton = None  # Boton pantalla completa
+    borderButton = None  # Boton de bordes con o sin
+    fpsCounterButton = None  # Contador de fps
+    lenguageButton = None  # idioma
+
+    def __init__(self):
+        self.name = 'Creando menu de inicio del juego'
+        print(self.name)
+        self.backButton = Button(text='Back',
+                                 text_color=color.white,
+                                 color=color.gray,
+                                 scale=(0.4, 0.085),
+                                 position=(0, 0.35))
+        self.fullscreenButton = Button(text='Full Screen',
+                                       text_color=color.white,
+                                       color=color.gray,
+                                       scale=(0.4, 0.085),
+                                       position=(0, 0.2))
+        self.borderButton = Button(text='Border',
+                                   text_color=color.white,
+                                   color=color.gray,
+                                   scale=(0.4, 0.085),
+                                   position=(0, 0.05))
+        self.fpsCounterButton = Button(text='FPS Counter',
+                                       text_color=color.white,
+                                       color=color.gray,
+                                       scale=(0.4, 0.085),
+                                       position=(0, -0.10))
+        self.lenguageButton = Button(text='Lenguage',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.085),
+                                     position=(0, -0.25))
 
     def open(self):
         print('Se debe abrir menu de configuraciones de la app')
@@ -25,6 +60,7 @@ class SettingsMenu(IMenu):
         print('Se debe cerrar el menu de configuraciones')
 
 
+# MENU EN PAUSA
 class OnGame(IMenu):
     name = 'Menu principal durante la partida'
 
@@ -35,6 +71,7 @@ class OnGame(IMenu):
         print('Se debe cerrar el menu de pausa')
 
 
+# MENU PRINCIPAL
 class MainMenu(IMenu):
     name = None
     newGameButton = None
