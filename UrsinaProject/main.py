@@ -8,7 +8,13 @@ tuxCrusadeApp = Ursina()  # SE DEFINE LA APP
 # ----------------------------------------------------------------------------------------------
 
 appWindow = system.appWindows()
+
 x = gui.MainMenu()
 x.open()
+
+
+#x = gui.SettingsMenu() #testeo(Mantener descomentado)
+
+
 # ----------------------------------------------------------------------------------------------
 tuxCrusadeApp.run()  # SE EJECUTA LA APP
