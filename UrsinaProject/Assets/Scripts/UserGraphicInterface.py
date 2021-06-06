@@ -72,7 +72,7 @@ class OnGame(IMenu):
 
 
 # MENU PRINCIPAL
-class MainMenu(IMenu):
+class MainMenu(IMenu, Entity):
     name = None
     newGameButton = None
     loadGameButton = None
@@ -81,6 +81,7 @@ class MainMenu(IMenu):
     exitGameButton = None
 
     def __init__(self):
+        super().__init__()
         self.name = 'Creando menu de inicio del juego'
         print(self.name)
         self.newGameButton = Button(text='New Game',

@@ -1,31 +1,31 @@
-from IPiece import IPiece as piece
+from Interfaces import IPiece
 
 
-class Pawn(piece):
+class Pawn(IPiece):
     name = 'Classic Pawn'
     value = 1
 
 
-class Rook(piece):
+class Rook(IPiece):
     name = 'Classic Rook'
     value = 5
 
 
-class Knight(piece):
+class Knight(IPiece):
     name = 'Classic Knight'
     value = 3
 
 
-class Bishop(piece):
+class Bishop(IPiece):
     name = 'Classic Bishop'
     value = 3
 
 
-class Queen(piece):
+class Queen(IPiece):
     name = 'Classic Queen'
     value = 9
 
 
-class King(piece):
+class King(IPiece):
     name = 'Classic King'
     value = -1  # El unico valor negativo, asi es facil calcular su valor respecto al resto
