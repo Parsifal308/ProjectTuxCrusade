@@ -1,7 +1,6 @@
 from ursina import *
 from abc import ABC, abstractmethod
-from Assets.Scripts import AppSystem
-
+from UrsinaProject.Assets.Scripts import AppSystem
 
 class IMenu(ABC):
     name = None
@@ -47,7 +46,7 @@ class SettingsMenu(IMenu):
                                        color=color.gray,
                                        scale=(0.4, 0.085),
                                        position=(0, -0.10))
-        self.lenguageButton = Button(text='Lenguage',
+        self.languageButton = Button(text='Language',
                                      text_color=color.white,
                                      color=color.gray,
                                      scale=(0.4, 0.085),
@@ -62,13 +61,49 @@ class SettingsMenu(IMenu):
 
 # MENU EN PAUSA
 class OnGame(IMenu):
-    name = 'Menu principal durante la partida'
+    name = 'Menu de pausa'
+    saveGameButton = None #Guardar partida
+    settingsButton = None #Configuracion dentro de la partida
+    exitGameButton = None #Volver al menú de inicio
+    backButton = None #Salir del menú de pausa y volver a la partida
+
+    def _init_(self):
+        self.name = 'Creando el menú de pausa'
+        print(self.name)
+        self.saveGameButton = Button(text='Save game',
+                                 text_color=color.white,
+                                 color=color.gray,
+                                 scale=(0.4, 0.085),
+                                 position=(0, 0.35))
+        self.settingsButton = Button(text='Settings',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.085),
+                                     position=(0, 0.2))
+        self.exitGameButton = Button(text='Exit game',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.085),
+                                     position=(0, 0.05))
+        self.backButton = Button(text='Back',
+                                 text_color=color.white,
+                                 color=color.gray,
+                                 scale=(0.4,0.085),
+                                 position=(0, -0.10))
 
     def open(self):
         print('Se debe abrir un menu de pausa dentro de la partida, donde deja guardar, cargar, salir, etc')
+        self.saveGameButton.enable()
+        self.settingsButton.enable()
+        self.exitGameButton.enable()
+        self.backButton.enable()
 
     def close(self):
         print('Se debe cerrar el menu de pausa')
+        self.saveGameButton.disable()
+        self.settingsButton.disable()
+        self.exitGameButton.disable()
+        self.backButton.disable()
 
 
 # MENU PRINCIPAL
