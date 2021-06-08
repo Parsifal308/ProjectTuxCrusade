@@ -1,3 +1,4 @@
+import sys
 from ursina import *
 
 
@@ -20,4 +21,4 @@ class appWindows:
         window.fullscreen = False  # Pantalla completa
         window.exit_button.visible = False  # Show the in-game red X that loses the window
         window.fps_counter.enabled = True  # contador de FPS
-        window.color = color.violet
+        window.color = color.random_color()
