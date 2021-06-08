@@ -1,42 +1,42 @@
-from IBehaviour import IBehaviour as behaviour
+from Interfaces import IBehaviour
 
 
-class PawnBehaviour(behaviour):
+class PawnBehaviour(IBehaviour):
     name = 'Classic pawn behaviour'
 
     def computeTurn(self):
         pass
 
 
-class RookBehaviour(behaviour):
+class RookBehaviour(IBehaviour):
     name = 'Classic rook behaviour'
 
     def computeTurn(self):
         pass
 
 
-class knightBehaviour(behaviour):
+class knightBehaviour(IBehaviour):
     name = 'Classic knight behaviour'
 
     def computeTurn(self):
         pass
 
 
-class BishopBehaviour(behaviour):
+class BishopBehaviour(IBehaviour):
     name = 'Classic bishop behaviour'
 
     def computeTurn(self):
         pass
 
 
-class QueenBehaviour(behaviour):
+class QueenBehaviour(IBehaviour):
     name = 'Classic queen behaviour'
 
     def computeTurn(self):
         pass
 
 
-class KingBehaviour(behaviour):
+class KingBehaviour(IBehaviour):
     name = 'Classic king behaviour'
 
     def computeTurn(self):
