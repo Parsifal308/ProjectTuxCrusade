@@ -1,10 +1,11 @@
-from ursina import *
 from abc import ABC, abstractmethod
-from Assets.Scripts import AppSystem
+
+from ursina import *
 
 
 class IMenu(ABC):
     name = None
+    stateVar = None
 
     @abstractmethod
     def open(self):
@@ -14,19 +15,23 @@ class IMenu(ABC):
     def close(self):
         pass
 
+    def myClick(self, anotherMenu):
+        self.stateVar = not self.stateVar
+        anotherMenu.stateVar = not anotherMenu.stateVar
+
 
 # MENU CONFIGURACION
 class SettingsMenu(IMenu):
-    name = 'Menu de configuraciones'
     backButton = None  # Boton volver
     fullscreenButton = None  # Boton pantalla completa
     borderButton = None  # Boton de bordes con o sin
     fpsCounterButton = None  # Contador de fps
-    lenguageButton = None  # idioma
+    languageButton = None  # idioma
 
     def __init__(self):
-        self.name = 'Creando menu de inicio del juego'
+        self.name = 'Menu de configuraciones'
         print(self.name)
+        self.stateVar = False
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
@@ -47,33 +52,41 @@ class SettingsMenu(IMenu):
                                        color=color.gray,
                                        scale=(0.4, 0.085),
                                        position=(0, -0.10))
-        self.lenguageButton = Button(text='Lenguage',
+        self.languageButton = Button(text='Language',
                                      text_color=color.white,
                                      color=color.gray,
                                      scale=(0.4, 0.085),
                                      position=(0, -0.25))
 
     def open(self):
-        print('Se debe abrir menu de configuraciones de la app')
+        self.backButton.enable()
+        self.fullscreenButton.enable()
+        self.borderButton.enable()
+        self.fpsCounterButton.enable()
+        self.languageButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu de configuraciones')
+        self.languageButton.disable()
+        self.borderButton.disable()
+        self.fpsCounterButton.disable()
+        self.backButton.disable()
+        self.fullscreenButton.disable()
 
 
 # MENU EN PAUSA
 class OnGame(IMenu):
-    name = 'Menu principal durante la partida'
+    name = 'Menu de Pausa'
+    stateVar = None
 
     def open(self):
-        print('Se debe abrir un menu de pausa dentro de la partida, donde deja guardar, cargar, salir, etc')
+        pass
 
     def close(self):
-        print('Se debe cerrar el menu de pausa')
+        pass
 
 
 # MENU PRINCIPAL
-class MainMenu(IMenu, Entity):
-    name = None
+class MainMenu(IMenu):
     newGameButton = None
     loadGameButton = None
     collectiblesButton = None
@@ -81,9 +94,9 @@ class MainMenu(IMenu, Entity):
     exitGameButton = None
 
     def __init__(self):
-        super().__init__()
-        self.name = 'Creando menu de inicio del juego'
+        self.name = 'Menu Principal'
         print(self.name)
+        self.stateVar = True
         self.newGameButton = Button(text='New Game',
                                     text_color=color.white,
                                     color=color.gray,
@@ -109,10 +122,8 @@ class MainMenu(IMenu, Entity):
                                      color=color.gray,
                                      scale=(0.4, 0.075),
                                      position=(0, -0.35))
-        self.exitGameButton.on_click = AppSystem.exitApp
 
     def open(self):
-        print('Se debe abrir el menu principal de la app')
         self.newGameButton.enable()
         self.collectiblesButton.enable()
         self.loadGameButton.enable()
@@ -120,29 +131,30 @@ class MainMenu(IMenu, Entity):
         self.exitGameButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu principal')
         self.newGameButton.disable()
         self.collectiblesButton.disable()
         self.loadGameButton.disable()
         self.settingsButton.disable()
         self.exitGameButton.disable()
 
+    def myClick(self, anotherMenu):
+        self.stateVar = not self.stateVar
+        anotherMenu.stateVar = not anotherMenu.stateVar
 
 class CreateGameMenu(IMenu):
-    name = 'Menu de creacion de nueva partida'
 
     def open(self):
-        print('Se debe abrir un menu para crear una nueva partida')
+        pass
 
     def close(self):
-        print('Se debe cerrar el menu de creacion de partida')
+        pass
 
 
 class CollectibleMenu(IMenu):
     name = 'Menu de desbloqueables'
 
     def open(self):
-        print('Se debe abrir un menu para visualizar y seleccionar los objetos desbloqueables')
+        pass
 
     def close(self):
-        print('Se debe cerrar el menu de coleccionables')
+        pass

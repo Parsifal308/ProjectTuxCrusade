@@ -15,25 +15,20 @@ class IBehaviour(ABC):
 
 
 # La base para crear piezas, junto a sus movimientos posibles, etc
-class Team(Enum):
-    WHITE = 0
-    BLACK = 1
-    RED = 2
-    Blue = 3
 
 
 class IPiece(ABC):
     name = None
     value = None
-    team = type(Team)
-    behaviour = type(IBehaviour)
+    team = None
+    behaviour = None
 
 
 class IBoard(ABC):
     name = None
     xSize = None
     ySize = None
-    positions = numpy.empty((xSize, ySize), dtype=IPiece)
+    positions = None
 
     @abstractmethod
     def SetPieces(self):  # settea las piezas en el tablero al comienzo del juego
