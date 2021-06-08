@@ -11,8 +11,8 @@ appWindow = system.appWindows()
 #x = gui.MainMenu()
 #x.open()
 
-
-x = gui.SettingsMenu() #testeo(Mantener descomentado)
+x = gui.CollectibleMenu()
+#x = gui.SettingsMenu() #testeo(Mantener descomentado)
 
 
 # ----------------------------------------------------------------------------------------------
