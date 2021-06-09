@@ -25,6 +25,7 @@ mainMenu.newGameButton.on_click = Func(startClassicGame, mainMenu)
 
 settingsMenu.backButton.on_click = Func(settingsMenu.myClick, mainMenu)
 
+
 def update():
 
     if mainMenu.stateVar:

@@ -19,6 +19,10 @@ class IMenu(ABC):
         self.stateVar = not self.stateVar
         anotherMenu.stateVar = not anotherMenu.stateVar
 
+    def changeMenu(self, to_Menu):
+        self.close()
+        to_Menu.open()
+
 
 # MENU CONFIGURACION
 class SettingsMenu(IMenu):
