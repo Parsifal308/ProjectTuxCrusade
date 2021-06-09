@@ -1,6 +1,6 @@
 from ursina import *
 from abc import ABC, abstractmethod
-from Assets.Scripts import AppSystem
+
 
 class IMenu(ABC):
     name = None
@@ -14,9 +14,10 @@ class IMenu(ABC):
     def close(self):
         pass
 
-    def click(self, to_Menu):
-        self.close()
-        to_Menu.open()
+    def myClick(self, to_Menu):
+        self.stateVar = False
+        to_Menu.stateVar = True
+
 
 # MENU CONFIGURACION
 class SettingsMenu(IMenu):
@@ -58,19 +59,27 @@ class SettingsMenu(IMenu):
                                      position=(0, -0.25))
 
     def open(self):
-        print('Se debe abrir menu de configuraciones de la app')
+        self.backButton.enable()
+        self.fullscreenButton.enable()
+        self.borderButton.enable()
+        self.fpsCounterButton.enable()
+        self.languageButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu de configuraciones')
+        self.backButton.disable()
+        self.fullscreenButton.disable()
+        self.borderButton.disable()
+        self.fpsCounterButton.disable()
+        self.languageButton.disable()
 
 
 # MENU EN PAUSA
 class OnGame(IMenu):
     name = 'Menu de pausa'
-    saveGameButton = None #Guardar partida
-    settingsButton = None #Configuracion dentro de la partida
-    exitGameButton = None #Volver al menú de inicio
-    backButton = None #Salir del menú de pausa y volver a la partida
+    saveGameButton = None  # Guardar partida
+    settingsButton = None  # Configuracion dentro de la partida
+    exitGameButton = None  # Volver al menú de inicio
+    backButton = None  # Salir del menú de pausa y volver a la partida
 
     def __init__(self):
         self.name = 'Creando el menú de pausa'
@@ -98,14 +107,12 @@ class OnGame(IMenu):
                                  position=(0, -0.10))
 
     def open(self):
-        print('Se debe abrir un menu de pausa dentro de la partida, donde deja guardar, cargar, salir, etc')
         self.saveGameButton.enable()
         self.settingsButton.enable()
         self.exitGameButton.enable()
         self.backButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu de pausa')
         self.saveGameButton.disable()
         self.settingsButton.disable()
         self.exitGameButton.disable()
@@ -150,10 +157,8 @@ class MainMenu(IMenu):
                                      color=color.gray,
                                      scale=(0.4, 0.075),
                                      position=(0, -0.35))
-        self.exitGameButton.on_click = AppSystem.exitApp
 
     def open(self):
-        print('Se debe abrir el menu principal de la app')
         self.newGameButton.enable()
         self.collectiblesButton.enable()
         self.loadGameButton.enable()
@@ -161,7 +166,6 @@ class MainMenu(IMenu):
         self.exitGameButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu principal')
         self.newGameButton.disable()
         self.collectiblesButton.disable()
         self.loadGameButton.disable()
@@ -171,57 +175,63 @@ class MainMenu(IMenu):
 
 class CreateGameMenu(IMenu):
     name = 'Menu de creacion de nueva partida'
-    difficultyButton = None #Se elige la dificultad
-    chooseTeamButton = None #Se elige el equipo/color con que jugar
-    versusButton = None #Se elige el contrincante. AI u otro jugador
-    gameModeButton = None #Se elige modo de juego
-    backButton = None #Se retorna al menu principal
+    startGameButton = None
+    difficultyButton = None  # Se elige la dificultad
+    chooseTeamButton = None  # Se elige el equipo/color con que jugar
+    versusButton = None  # Se elige el contrincante. AI u otro jugador
+    gameModeButton = None  # Se elige modo de juego
+    backButton = None  # Se retorna al menu principal
 
     def __init__(self):
-
         print(self.name)
-
-        self.difficultyButton = Button(text = 'Choose the difficulty',
-                                    text_color = color.white,
-                                    color = color.gray,
-                                    scale = (0.4, 0.075),
-                                    position = (0, 0.35))
-        self.chooseTeamButton = Button(text = 'Choose your team',
-                                       text_color = color.white,
-                                       color = color.gray,
-                                       scale = (0.4, 0.075),
-                                       position = (0, 0.2))
-        self.versusButton = Button(text = 'Choose your challenger',
-                                   text_color = color.white,
-                                   color = color.gray,
-                                   scale = (0.4, 0.075,),
-                                   position = (0, 0.05))
-        self.gameModeButton = Button (text = 'Choose your game mode',
-                                      text_color = color.white,
-                                      color = color.gray,
-                                      scale = (0.4, 0.075),
-                                      position = (0, -0.10))
-        self.backButton = Button(text = 'Back to menu',
-                                 text_color = color.white,
-                                 color = color.gray,
-                                 scale = (0.4, 0.075),
-                                 position = (0, -0.35))
+        self.stateVar = False
+        self.startGameButton = Button(text='START GAME!!',
+                                      text_color=color.white,
+                                      color=color.gray,
+                                      scale=(0.4, 0.075),
+                                      position=(0, 0.35))
+        self.difficultyButton = Button(text='Choose the difficulty',
+                                       text_color=color.white,
+                                       color=color.gray,
+                                       scale=(0.4, 0.075),
+                                       position=(0, 0.2))
+        self.chooseTeamButton = Button(text='Choose your team',
+                                       text_color=color.white,
+                                       color=color.gray,
+                                       scale=(0.4, 0.075),
+                                       position=(0, 0.1))
+        self.versusButton = Button(text='Choose your challenger',
+                                   text_color=color.white,
+                                   color=color.gray,
+                                   scale=(0.4, 0.075,),
+                                   position=(0, 0.))
+        self.gameModeButton = Button(text='Choose your game mode',
+                                     text_color=color.white,
+                                     color=color.gray,
+                                     scale=(0.4, 0.075),
+                                     position=(0, -0.1))
+        self.backButton = Button(text='Back to menu',
+                                 text_color=color.white,
+                                 color=color.gray,
+                                 scale=(0.4, 0.075),
+                                 position=(0, -0.3))
 
     def open(self):
-        print('Se debe abrir un menu para crear una nueva partida')
         self.difficultyButton.enable()
         self.chooseTeamButton.enable()
         self.versusButton.enable()
         self.gameModeButton.enable()
         self.backButton.enable()
+        self.startGameButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu de creacion de partida')
         self.difficultyButton.disable()
         self.chooseTeamButton.disable()
         self.versusButton.disable()
         self.gameModeButton.disable()
         self.backButton.disable()
+        self.startGameButton.disable()
+
 
 class CollectibleMenu(IMenu):
     name = 'Menu de desbloqueables'
@@ -242,30 +252,30 @@ class CollectibleMenu(IMenu):
         print(self.name)
         self.stateVar = False
         self.kingWindowsButton = Button(text='King Windows',
-                                       text_color=color.white,
-                                       color=color.gray,
-                                       scale=(0.2, 0.2),
-                                       position=(-0.4, 0.35))
+                                        text_color=color.white,
+                                        color=color.gray,
+                                        scale=(0.2, 0.2),
+                                        position=(-0.4, 0.35))
         self.queenWindowsButton = Button(text='Queen Windows',
-                                        text_color=color.white,
-                                        color=color.gray,
-                                        scale=(0.2, 0.2),
-                                        position=(-0.4, 0.1))
+                                         text_color=color.white,
+                                         color=color.gray,
+                                         scale=(0.2, 0.2),
+                                         position=(-0.4, 0.1))
         self.towerWindowsButton = Button(text='Tower Windows',
-                                        text_color=color.white,
-                                        color=color.gray,
-                                        scale=(0.2, 0.2),
-                                        position=(-0.4, -0.15))
+                                         text_color=color.white,
+                                         color=color.gray,
+                                         scale=(0.2, 0.2),
+                                         position=(-0.4, -0.15))
         self.horseWindowsButton = Button(text='Horse Windows',
+                                         text_color=color.white,
+                                         color=color.gray,
+                                         scale=(0.2, 0.2),
+                                         position=(-0.4, -0.40))
+        self.pawnWindowsButton = Button(text='Pawn Windows',
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
-                                        position=(-0.4, -0.40))
-        self.pawnWindowsButton = Button(text='Pawn Windows',
-                                       text_color=color.white,
-                                       color=color.gray,
-                                       scale=(0.2, 0.2),
-                                       position=(-0.1, 0.35))
+                                        position=(-0.1, 0.35))
         self.kingLinuxButton = Button(text='King Linux',
                                       text_color=color.white,
                                       color=color.gray,
@@ -298,7 +308,6 @@ class CollectibleMenu(IMenu):
                                  position=(0.5, -0.45))
 
     def open(self):
-        print('Se debe abrir un menu para visualizar y seleccionar los objetos desbloqueables')
         self.backButton.enable()
         self.kingLinuxButton.enable()
         self.queenLinuxButton.enable()
@@ -312,7 +321,6 @@ class CollectibleMenu(IMenu):
         self.pawnWindowsButton.enable()
 
     def close(self):
-        print('Se debe cerrar el menu de coleccionables')
         self.backButton.disable()
         self.kingLinuxButton.disable()
         self.queenLinuxButton.disable()
