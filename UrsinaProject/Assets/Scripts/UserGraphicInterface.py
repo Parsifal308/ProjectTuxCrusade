@@ -164,13 +164,57 @@ class MainMenu(IMenu):
 
 class CreateGameMenu(IMenu):
     name = 'Menu de creacion de nueva partida'
+    difficultyButton = None #Se elige la dificultad
+    chooseTeamButton = None #Se elige el equipo/color con que jugar
+    versusButton = None #Se elige el contrincante. AI u otro jugador
+    gameModeButton = None #Se elige modo de juego
+    backButton = None #Se retorna al menu principal
+
+    def __init__(self):
+
+        print(self.name)
+
+        self.difficultyButton = Button(text = 'Choose the difficulty',
+                                    text_color = color.white,
+                                    color = color.gray,
+                                    scale = (0.4, 0.075),
+                                    position = (0, 0.35))
+        self.chooseTeamButton = Button(text = 'Choose your team',
+                                       text_color = color.white,
+                                       color = color.gray,
+                                       scale = (0.4, 0.075),
+                                       position = (0, 0.2))
+        self.versusButton = Button(text = 'Choose your challenger',
+                                   text_color = color.white,
+                                   color = color.gray,
+                                   scale = (0.4, 0.075,),
+                                   position = (0, 0.05))
+        self.gameModeButton = Button (text = 'Choose your game mode',
+                                      text_color = color.white,
+                                      color = color.gray,
+                                      scale = (0.4, 0.075),
+                                      position = (0, -0.10))
+        self.backButton = Button(text = 'Back to menu',
+                                 text_color = color.white,
+                                 color = color.gray,
+                                 scale = (0.4, 0.075),
+                                 position = (0, -0.35))
 
     def open(self):
         print('Se debe abrir un menu para crear una nueva partida')
+        self.difficultyButton.enable()
+        self.chooseTeamButton.enable()
+        self.versusButton.enable()
+        self.gameModeButton.enable()
+        self.backButton.enable()
 
     def close(self):
         print('Se debe cerrar el menu de creacion de partida')
-
+        self.difficultyButton.disable()
+        self.chooseTeamButton.disable()
+        self.versusButton.disable()
+        self.gameModeButton.disable()
+        self.backButton.disable()
 
 class CollectibleMenu(IMenu):
     name = 'Menu de desbloqueables'
