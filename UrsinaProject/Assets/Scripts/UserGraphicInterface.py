@@ -4,6 +4,7 @@ from Assets.Scripts import AppSystem
 
 class IMenu(ABC):
     name = None
+    stateVar = None
 
     @abstractmethod
     def open(self):
@@ -13,6 +14,9 @@ class IMenu(ABC):
     def close(self):
         pass
 
+    def click(self, to_Menu):
+        self.close()
+        to_Menu.open()
 
 # MENU CONFIGURACION
 class SettingsMenu(IMenu):
@@ -26,6 +30,7 @@ class SettingsMenu(IMenu):
     def __init__(self):
         self.name = 'Creando menu de inicio del juego'
         print(self.name)
+        self.stateVar = False
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
@@ -70,6 +75,7 @@ class OnGame(IMenu):
     def __init__(self):
         self.name = 'Creando el menú de pausa'
         print(self.name)
+        self.stateVar = False
         self.saveGameButton = Button(text='Save game',
                                      text_color=color.white,
                                      color=color.gray,
@@ -118,6 +124,7 @@ class MainMenu(IMenu):
     def __init__(self):
         self.name = 'Creando menu de inicio del juego'
         print(self.name)
+        self.stateVar = True
         self.newGameButton = Button(text='New Game',
                                     text_color=color.white,
                                     color=color.gray,
@@ -189,6 +196,7 @@ class CollectibleMenu(IMenu):
     def __init__(self):
         self.name = 'Creando menu de desbloqueables'
         print(self.name)
+        self.stateVar = False
         self.kingWindowsButton = Button(text='King Windows',
                                        text_color=color.white,
                                        color=color.gray,
