@@ -15,8 +15,6 @@ class IBehaviour(ABC):
 
 
 # La base para crear piezas, junto a sus movimientos posibles, etc
-
-
 class IPiece(ABC):
     name = None
     value = None

@@ -1,22 +1,41 @@
 from ursina import *
+from Assets.Scripts import AppSystem, UserGraphicInterface, ClassicBoard, ClassicPieces
 
-from Assets.Scripts import AppSystem as system
-from Assets.Scripts import UserGraphicInterface as gui
+
+def startClassicGame(menu):
+    camera.position = Vec3(2.5, -15, -15)
+    camera.rotation = Vec3(-50, 0, 0)
+    board = ClassicBoard.classicBoard()
+    board.SetBoard()
+    board.SetPieces()
+    menu.stateVar = False
 
 tuxCrusadeApp = Ursina()  # SE DEFINE LA APP
 # ----------------------------------------------------------------------------------------------
+appWindow = AppSystem.appWindows()
 
-appWindow = system.appWindows()
+camera.position = Vec3(0, 0, 0)
+camera.rotation = Vec3(0, 0, 0)
 
-#x = gui.MainMenu()
-#x.open()
+mainMenu = UserGraphicInterface.MainMenu()
+settingsMenu = UserGraphicInterface.SettingsMenu()
 
-x = gui.CreateGameMenu()
-#x = gui.SettingsMenu() #testeo(Mantener descomentado)
+mainMenu.settingsButton.on_click = Func(mainMenu.myClick, settingsMenu)
+mainMenu.newGameButton.on_click = Func(startClassicGame, mainMenu)
 
-#x = gui.OnGame()
-#x = gui.OnGame()
-#x.open()
+settingsMenu.backButton.on_click = Func(settingsMenu.myClick, mainMenu)
+
+
+def update():
+
+    if mainMenu.stateVar:
+        mainMenu.open()
+    else:
+        mainMenu.close()
+    if settingsMenu.stateVar:
+        settingsMenu.open()
+    else:
+        settingsMenu.close()
 
 # ----------------------------------------------------------------------------------------------
 tuxCrusadeApp.run()  # SE EJECUTA LA APP
