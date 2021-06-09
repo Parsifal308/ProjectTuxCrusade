@@ -11,10 +11,10 @@ appWindow = system.appWindows()
 #x = gui.MainMenu()
 #x.open()
 
-
+x = gui.CollectibleMenu()
 #x = gui.SettingsMenu() #testeo(Mantener descomentado)
 
-x = gui.OnGame()
+#x = gui.OnGame()
 #x = gui.OnGame()
 #x.open()
 

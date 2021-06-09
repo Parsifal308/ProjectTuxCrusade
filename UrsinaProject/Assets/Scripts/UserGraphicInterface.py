@@ -179,37 +179,37 @@ class CollectibleMenu(IMenu):
     towerLinuxButton = None
     horseLinuxButton = None
     pawnLinuxButton = None
-    kingWindowButton = None
-    queenWindowButton = None
-    towerWindowButton = None
-    horseWindowButton = None
-    pawnWindowButton = None
+    kingWindowsButton = None
+    queenWindowsButton = None
+    towerWindowsButton = None
+    horseWindowsButton = None
+    pawnWindowsButton = None
     backButton = None
 
     def __init__(self):
         self.name = 'Creando menu de desbloqueables'
         print(self.name)
-        self.kingWindowButton = Button(text='King Window',
+        self.kingWindowsButton = Button(text='King Windows',
                                        text_color=color.white,
                                        color=color.gray,
                                        scale=(0.2, 0.2),
                                        position=(-0.4, 0.35))
-        self.queenWindowButton = Button(text='Queen Window',
+        self.queenWindowsButton = Button(text='Queen Windows',
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
                                         position=(-0.4, 0.1))
-        self.towerWindowButton = Button(text='Tower Window',
+        self.towerWindowsButton = Button(text='Tower Windows',
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
                                         position=(-0.4, -0.15))
-        self.horseWindowButton = Button(text='Horse Window',
+        self.horseWindowsButton = Button(text='Horse Windows',
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
                                         position=(-0.4, -0.40))
-        self.pawnWindowButton = Button(text='Pawn Window',
+        self.pawnWindowsButton = Button(text='Pawn Windows',
                                        text_color=color.white,
                                        color=color.gray,
                                        scale=(0.2, 0.2),
@@ -253,11 +253,11 @@ class CollectibleMenu(IMenu):
         self.towerLinuxButton.enable()
         self.horseLinuxButton.enable()
         self.pawnLinuxButton.enable()
-        self.kingWindowButton.enable()
-        self.queenWindowButton.enable()
-        self.towerWindowButton.enable()
-        self.horseWindowButton.enable()
-        self.pawnWindowButton.enable()
+        self.kingWindowsButton.enable()
+        self.queenWindowsButton.enable()
+        self.towerWindowsButton.enable()
+        self.horseWindowsButton.enable()
+        self.pawnWindowsButton.enable()
 
     def close(self):
         print('Se debe cerrar el menu de coleccionables')
@@ -267,8 +267,8 @@ class CollectibleMenu(IMenu):
         self.towerLinuxButton.disable()
         self.horseLinuxButton.disable()
         self.pawnLinuxButton.disable()
-        self.kingWindowButton.disable()
-        self.queenWindowButton.disable()
-        self.towerWindowButton.disable()
-        self.horseWindowButton.disable()
-        self.pawnWindowButton.disable()
+        self.kingWindowsButton.disable()
+        self.queenWindowsButton.disable()
+        self.towerWindowsButton.disable()
+        self.horseWindowsButton.disable()
+        self.pawnWindowsButton.disable()
