@@ -54,12 +54,12 @@ class classicBoard(IBoard):
             for j in range(len(self.positions[i])):
                 if (j % 2) == 0:
                     if (i % 2) == 0:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock', collider='box', position=(i, j, 1), rotation_x=-90)
                     else:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01',collider='box', position=(i, j, 1), rotation_x=-90)
                 else:
                     if (i % 2) == 0:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01',collider='box', position=(i, j, 1), rotation_x=-90)
                     else:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock',collider='box', position=(i, j, 1), rotation_x=-90)
         Entity(model='Board Sides.obj', texture='Wood', position=(7, 0, 1.01), rotation_x=90)

@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
-import numpy
-from enum import Enum
 
 
 class IBehaviour(ABC):
     name = None
     ySize = None
     xSize = None
-    positions = (None, None)
+    currentPosition = (None, None)
+    objectivePosition = (None, None)
 
     @abstractmethod
     def computeTurn(self):  # calcula cual es el siguiente curso de accion segun el estado del tablero en el momento
@@ -34,4 +33,20 @@ class IBoard(ABC):
 
     @abstractmethod
     def SetBoard(self):  # settea el tablero
+        pass
+
+
+class IMovement(ABC):
+    name = None
+    xSize = None
+    ySize = None
+    currentPosition = (None, None)
+    objectivePosition = (None, None)
+
+    @abstractmethod
+    def calculateMovement(self):
+        pass
+
+    @abstractmethod
+    def move(self):
         pass
