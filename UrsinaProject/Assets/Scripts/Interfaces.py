@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+import numpy
+from ursina import *
 
 
 class IBehaviour(ABC):
@@ -36,12 +38,15 @@ class IBoard(ABC):
         pass
 
 
+
 class IMovement(ABC):
     name = None
     xSize = None
     ySize = None
     currentPosition = (None, None)
     objectivePosition = (None, None)
+    previousBoard = numpy.empty(shape=(8, 8, 2), dtype=Entity)
+    nextBoardState = numpy.empty(shape=(8, 8, 2), dtype=Entity)
 
     @abstractmethod
     def calculateMovement(self):
