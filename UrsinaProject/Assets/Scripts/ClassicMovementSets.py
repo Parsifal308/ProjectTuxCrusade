@@ -1,14 +1,14 @@
-from Interfaces import IMovement
+from Assets.Scripts import Interfaces
 
 
-class PawnMovementSet(IMovement):
+class PawnMovementSet(Interfaces.IMovement):
     name = 'Classic pawn movement set'
 
     # recibe posicion actual, posicion objetivo, equipo correspondiente, el tablero y retorna TRUE si el movimiento es posible de realizar
     def firstMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
         if team == 'white':
-            if (yPosTarget, xPosTarget) == (yPos - 2, xPos):  # si dos casillas enfrente
-                if board.checkEmptyPosition(xPosTarget, yPosTarget + 1):  # si no hay nada delante
+            if (xPosTarget, yPosTarget) == (xPos - 2, yPos):  # si dos casillas enfrente
+                if board.checkEmptyPosition(xPosTarget - 1, yPosTarget):  # si no hay nada delante
                     if board.checkEmptyPosition(xPosTarget, yPosTarget):  # si no hay nada en la posicion destino
                         return True
                     else:
@@ -19,8 +19,8 @@ class PawnMovementSet(IMovement):
                 return False
         else:
             if team == 'black':
-                if (yPosTarget, xPosTarget) == (yPos + 2, xPos):
-                    if board.checkEmptyPosition(xPosTarget, yPosTarget - 1):  # si no hay nada delante
+                if (xPosTarget, yPosTarget) == (xPos + 2, yPos):
+                    if board.checkEmptyPosition(xPosTarget + 1, yPosTarget):  # si no hay nada delante
                         if board.checkEmptyPosition(xPosTarget, yPosTarget):  # si no hay nada en la posicion destino
                             return True
                         else:
@@ -34,7 +34,7 @@ class PawnMovementSet(IMovement):
 
     def basicMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
         if team == 'white':
-            if (yPosTarget, xPosTarget) == (yPos - 1, xPos):
+            if (xPosTarget, yPosTarget) == (xPos - 1, yPos):
                 if board.checkEmptyPosition(xPosTarget, yPosTarget):
                     return True
                 else:
@@ -43,7 +43,7 @@ class PawnMovementSet(IMovement):
                 return False
         else:
             if team == 'black':
-                if (yPosTarget, xPosTarget) == (yPos + 1, xPos):
+                if (xPosTarget, yPosTarget) == (xPos + 1, yPos):
                     if board.checkPosition(xPosTarget, yPosTarget):
                         return True
                     else:
@@ -64,7 +64,7 @@ class PawnMovementSet(IMovement):
         pass
 
 
-class RookMovementSet(IMovement):
+class RookMovementSet(Interfaces.IMovement):
     name = 'Classic rook movement set'
 
     def calculateMovement(self):
@@ -74,7 +74,7 @@ class RookMovementSet(IMovement):
         pass
 
 
-class BishopMovementSet(IMovement):
+class BishopMovementSet(Interfaces.IMovement):
     name = 'Classic bishop movement set'
 
     def calculateMovement(self):
@@ -84,7 +84,7 @@ class BishopMovementSet(IMovement):
         pass
 
 
-class KingMovementSet(IMovement):
+class KingMovementSet(Interfaces.IMovement):
     name = 'Classic king movement set'
 
     def calculateMovement(self):
@@ -94,7 +94,7 @@ class KingMovementSet(IMovement):
         pass
 
 
-class QueenMovementSet(IMovement):
+class QueenMovementSet(Interfaces.IMovement):
     name = 'Classic queen movement set'
 
     def calculateMovement(self):
@@ -104,7 +104,7 @@ class QueenMovementSet(IMovement):
         pass
 
 
-class KnightMovementSet(IMovement):
+class KnightMovementSet(Interfaces.IMovement):
     name = 'Classic knight movement set'
 
     def calculateMovement(self):
