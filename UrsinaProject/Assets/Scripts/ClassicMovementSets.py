@@ -331,8 +331,8 @@ class QueenMovementSet(Interfaces.IMovement):
 
 
 
-class KingMovementSet(Interfaces.IMovement):
-    name = 'Classic king movement set'
+class KnightMovementSet(Interfaces.IMovement):
+    name = 'Classic knight movement set'
 
     def __init__(self):
         self.casilla1=None  #Primer posicion de la pieza
