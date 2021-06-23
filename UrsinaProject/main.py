@@ -1,30 +1,33 @@
 from ursina import *
-from Assets.Scripts import AppSystem, UserGraphicInterface, ClassicBoard, ClassicPieces
+from Assets.Scripts import AppSystem, UserGraphicInterface, Game
 
+global mainMenu
+global settingsMenu
+global pauseMenu
+global newGameMenu
+global collectibleMenu
 
-def startClassicGame(menu):
-    cameraParent = Entity(model='cube', color=color.red, position=(3.5, 3.5, 0))
-    camera.parent = cameraParent
-    camera.position= Vec3(-0.8, -17, -14)
-    #camera.position = Vec3(2.5, -15, -15)
-    camera.rotation = Vec3(-50, 0, 0)
-    board = ClassicBoard.classicBoard()
-    board.SetBoard()
-    board.SetPieces()
-    menu.stateVar = False
+def resetCamera():
+    camera.position = Vec3(0, 0, 0)
+    camera.rotation = Vec3(0, 0, 0)
 
 tuxCrusadeApp = Ursina() # SE DEFINE LA APP
 # ----------------------------------------------------------------------------------------------
 appWindow = AppSystem.appWindows()
 
-camera.position = Vec3(0, 0, 0)
-camera.rotation = Vec3(0, 0, 0)
-
-mainMenu = UserGraphicInterface.MainMenu()
+mainMenu= UserGraphicInterface.MainMenu()
 settingsMenu = UserGraphicInterface.SettingsMenu()
 pauseMenu = UserGraphicInterface.OnGame()
 newGameMenu = UserGraphicInterface.CreateGameMenu()
 collectibleMenu = UserGraphicInterface.CollectibleMenu()
+
+mainMenu.parent = camera
+settingsMenu.parent = camera
+pauseMenu.parent = camera
+newGameMenu.parent = camera
+collectibleMenu.parent = camera
+
+resetCamera()
 settingsMenu.close()
 pauseMenu.close()
 newGameMenu.close()
@@ -34,14 +37,13 @@ mainMenu.settingsButton.on_click = Func(mainMenu.myClick, settingsMenu)
 mainMenu.newGameButton.on_click = Func(mainMenu.myClick, newGameMenu)
 mainMenu.collectiblesButton.on_click = Func(mainMenu.myClick, collectibleMenu)
 mainMenu.exitGameButton.on_click = Func(sys.exit)
-
 settingsMenu.backButton.on_click = Func(settingsMenu.myClick, mainMenu)
 collectibleMenu.backButton.on_click = Func(collectibleMenu.myClick, mainMenu)
 newGameMenu.backButton.on_click = Func(newGameMenu.myClick, mainMenu)
-newGameMenu.startGameButton.on_click = Func(startClassicGame, newGameMenu)
+newGameMenu.startGameButton.on_click = Func(Game.startClassicGame, newGameMenu)
+
 
 def update():
-
     if mainMenu.stateVar:
         mainMenu.open()
     else:
@@ -59,6 +61,8 @@ def update():
     else:
         newGameMenu.close()
     if held_keys['d']:
-        cameraO
+        Game.cameraParent.rotation_z -= 75 * time.dt
+    if held_keys['a']:
+        Game.cameraParent.rotation_z += 75 * time.dt
 # ----------------------------------------------------------------------------------------------
 tuxCrusadeApp.run()  # SE EJECUTA LA APP

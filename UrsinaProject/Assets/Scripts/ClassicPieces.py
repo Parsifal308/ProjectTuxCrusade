@@ -1,4 +1,5 @@
 from Assets.Scripts.Interfaces import IPiece
+from Assets.Scripts import ClassicMovementSets
 from enum import Enum
 from ursina import *
 
@@ -7,10 +8,12 @@ class Pawn(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.PawnMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic Pawn'
+        self.name = 'Pawn'
         self.value = 1
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base Pawn.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
@@ -27,8 +30,9 @@ class Rook(IPiece):
     entity = None
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic Rook'
+        self.name = 'Rook'
         self.value = 5
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base Rook.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
@@ -45,8 +49,9 @@ class Knight(IPiece):
     entity = None
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic Knight'
+        self.name = 'Knight'
         self.value = 3
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base Knight.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
@@ -63,8 +68,9 @@ class Bishop(IPiece):
     entity = None
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic Bishop'
+        self.name = 'Bishop'
         self.value = 3
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base Bishop.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
@@ -81,8 +87,9 @@ class Queen(IPiece):
     entity = None
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic Queen'
+        self.name = 'Queen'
         self.value = 9
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base Queen.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
@@ -99,8 +106,9 @@ class King(IPiece):
     entity = None
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
-        self.name = 'Classic King'
+        self.name = 'King'
         self.value = -1
+        self.team = team
         if team == 'white':
             self.entity = Entity(model='Base King.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':

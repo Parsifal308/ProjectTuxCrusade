@@ -15,13 +15,21 @@ class IBehaviour(ABC):
         pass
 
 
-# La base para crear piezas, junto a sus movimientos posibles, etc
+# La base para crear piezas
 class IPiece(ABC):
-    name = None
+    name = ''
     value = None
-    team = None
-    behaviour = None
+    team = ''
+    moveSet = None
 
+    def getTeam(self):
+        return self.team
+
+    def getName(self):
+        return self.name
+
+    def getMoveSet(self):
+        return self.moveSet
 
 class IBoard(ABC):
     name = None
@@ -37,6 +45,9 @@ class IBoard(ABC):
     def SetBoard(self):  # settea el tablero
         pass
 
+    @abstractmethod
+    def movePiece(self):
+        pass
 
 
 class IMovement(ABC):
