@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 import numpy
 from ursina import *
 
+class IMovement(ABC):
+
+    previousBoard = numpy.empty(shape=(8, 8, 2), dtype=Entity)
+    nextBoardState = numpy.empty(shape=(8, 8, 2), dtype=Entity)
 
 class IBehaviour(ABC):
     name = None
