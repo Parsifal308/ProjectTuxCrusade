@@ -3,7 +3,10 @@ from Assets.Scripts import AppSystem, UserGraphicInterface, ClassicBoard, Classi
 
 
 def startClassicGame(menu):
-    camera.position = Vec3(2.5, -15, -15)
+    cameraParent = Entity(model='cube', color=color.red, position=(3.5, 3.5, 0))
+    camera.parent = cameraParent
+    camera.position= Vec3(-0.8, -17, -14)
+    #camera.position = Vec3(2.5, -15, -15)
     camera.rotation = Vec3(-50, 0, 0)
     board = ClassicBoard.classicBoard()
     board.SetBoard()
@@ -55,6 +58,7 @@ def update():
         newGameMenu.open()
     else:
         newGameMenu.close()
-
+    if held_keys['d']:
+        cameraO
 # ----------------------------------------------------------------------------------------------
 tuxCrusadeApp.run()  # SE EJECUTA LA APP

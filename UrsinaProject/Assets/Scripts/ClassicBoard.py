@@ -1,7 +1,21 @@
-from ursina import *
-from Assets.Scripts.Interfaces import IBoard
-from Assets.Scripts.ClassicPieces import *
 import numpy
+
+from Assets.Scripts.ClassicPieces import *
+from Assets.Scripts.Interfaces import IBoard
+
+
+class boardPosition(Button):
+    def __init__(self, position=(0, 0, 0), xRotation=0, posColor='White'):
+        super().__init__(
+            parent=scene,
+            model='Board Position.obj',
+            texture='Stone Tiles 2.jpg',
+            color=posColor,
+            highlight_color=color.azure,
+            pressed_color=color.lime,
+            position=position,
+            rotation_x=xRotation,
+        )
 
 
 class classicBoard(IBoard):
@@ -46,7 +60,7 @@ class classicBoard(IBoard):
         self.positions[7, 4, 1] = King('black', Vec3((7, 4, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 5, 1] = Bishop('black', Vec3((7, 5, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 6, 1] = Knight('black', Vec3((7, 6, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 7, 1] = Rook('black', Vec3((7, 7, 0.5)), 0.5, 0, -90, 0)
+        self.positions[7, 7, 1] = Rook('black', Vec3((7, 7, 0.5)), 0.5, -90, 0, 0)
 
     def SetBoard(self):
         print('Construyendo tablero')  # settea las piezas del tablero en la parte [x,y,0] de la matriz
@@ -54,12 +68,20 @@ class classicBoard(IBoard):
             for j in range(len(self.positions[i])):
                 if (j % 2) == 0:
                     if (i % 2) == 0:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock', collider='box', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = boardPosition((i, j, 1), -90, color.white)
                     else:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01',collider='box', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = boardPosition((i, j, 1), -90, color.gray)
                 else:
                     if (i % 2) == 0:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='Black Rock 01',collider='box', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = boardPosition((i, j, 1), -90, color.gray)
                     else:
-                        self.positions[i][j][0] = Entity(model='Board Position.obj', texture='White Rock',collider='box', position=(i, j, 1), rotation_x=-90)
+                        self.positions[i][j][0] = boardPosition((i, j, 1), -90, color.white)
         Entity(model='Board Sides.obj', texture='Wood', position=(7, 0, 1.01), rotation_x=90)
+
+    def checkEmptyPosition(self, xPos, yPos):
+        if self.positions[1, xPos, yPos] is None:
+            return True
+        else:
+            return False
+
+
