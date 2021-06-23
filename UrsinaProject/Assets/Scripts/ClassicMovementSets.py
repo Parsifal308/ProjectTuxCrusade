@@ -158,11 +158,35 @@ class BishopMovementSet(IMovement):
 class KingMovementSet(IMovement):
     name = 'Classic king movement set'
 
+    def __init__(self):
+        self.casilla1=None  #Primer posicion de la pieza
+        self.casilla2=None  #Segunda posicion de la pieza
+        self.color=None     #Se define el color de la pieza
+
     def calculateMovement(self):
         pass
 
-    def move(self):
-        pass
+    def basicMovement(self):
+        def aliados(self):  # chequea que no ataque piezas amigas
+            pieza2_color = ""  # CODIGO QUE DEFINA LA SEGUNDA PIEZA
+            if self.color == "white" and pieza2_color in self.color == "white":
+                return True
+            if self.color == "black" and pieza2_color in self.color == "black":
+                return True
+            else:
+                return False
+
+        def movimiento_permitido(self):  # Chequea que pueda moverse al casillero deseado (en este caso vertical/horizontal)
+            if self.color == "white" or self.color == "black":  # se chequea el color de las piezas
+                if (int(self.casilla1[1]) == int(self.casilla2[1]) or self.casilla1[0] == self.casilla2[0]):
+                    return True
+            return False
+
+        if self.casilla1 == (self.color=="white") or self.casilla1 == (self.color=="black"):
+            if (abs(int(self.casilla1[1]) - int(self.casilla2[1])) == 2) and (abs(self.ranks.find(self.casilla1[0]) - self.ranks.find(self.casilla2[0])) == 1): #Movimiento de "L Vertical"
+                return True
+            if (abs(int(self.casilla1[1]) - int(self.casilla2[1])) == 1) and (abs(self.ranks.find(self.casilla1[0]) - self.ranks.find(self.casilla2[0])) == 2): #Movimiento de "L Horizontal"
+                return True
 
 
 class QueenMovementSet(IMovement):
