@@ -159,61 +159,67 @@ class BishopMovementSet(Interfaces.IMovement):
         pass
 
     def diagonalMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):  # movimiento diagonal
+        print(xPos, yPos, xPosTarget, yPosTarget, team, board)
         if team == 'white':
             if (yPosTarget > yPos) and (xPosTarget > xPos):  # va hacia el Sur Este
                 cantidadLugaresSE = yPosTarget - yPos
-                for i in cantidadLugaresSE:
+
+                for i in range(1, cantidadLugaresSE):
                     if not board.checkEmptyPosition(xPos + i, yPos + i):
                         return False
                 return True
-            else:
-                if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
-                    cantidadLugaresSO = yPosTarget - yPos
-                    for i in cantidadLugaresSO:
-                        if not board.checkEmptyPosition(xPos - i, yPos + i):
-                            return False
-                    return True
-                else:
-                    if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
-                        cantidadLugaresNE = xPosTarget - xPos
-                        for i in cantidadLugaresNE:
-                            if not board.checkEmptyPosition(xPos + i, yPos - i):
-                                return False
-                        return True
-                    else:
-                        if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
-                            cantidadLugaresNO = xPos - xPosTarget
-                            for i in cantidadLugaresNO:
-                                if not board.checkEmptyPosition(xPos - i, yPos - i):
-                                    return False
-                            return True
+            if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
+                cantidadLugaresSO = yPosTarget - yPos
+                for i in range(1, cantidadLugaresSO):
+                    if not board.checkEmptyPosition(xPos - i, yPos + i):
+                        return False
+                return True
+
+            if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
+                cantidadLugaresNE = xPosTarget - xPos
+                for i in range(1, cantidadLugaresNE):
+                    if not board.checkEmptyPosition(xPos + i, yPos - i):
+                        return False
+                return True
+
+            if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
+                print("VAMOS AL NO")
+                cantidadLugaresNO = xPos - xPosTarget
+                print(cantidadLugaresNO)
+                for i in range(1, cantidadLugaresNO):
+                    print("Estamos en el for, i vale:", i)
+                    if not board.checkEmptyPosition(xPos - i, yPos - i):
+                        print("Devuelve FALSEEE")
+                        return False
+                    print("Devuelve TRUE")
+                return True
 
         else:
             if team == 'black':
                 if (yPosTarget > yPos) and (xPosTarget > xPos):  # va hacia el Sur Este
                     cantidadLugaresSE = yPosTarget - yPos
-                    for i in cantidadLugaresSE:
+                    for i in range(1, cantidadLugaresSE):
                         if not board.checkEmptyPosition(xPos + i, yPos + i):
                             return False
                     return True
                 else:
                     if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
                         cantidadLugaresSO = yPosTarget - yPos
-                        for i in cantidadLugaresSO:
+                        for i in range(1, cantidadLugaresSO):
                             if not board.checkEmptyPosition(xPos - i, yPos + i):
                                 return False
                         return True
                     else:
                         if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
                             cantidadLugaresNE = xPosTarget - xPos
-                            for i in cantidadLugaresNE:
+                            for i in range(1, cantidadLugaresNE):
                                 if not board.checkEmptyPosition(xPos + i, yPos - i):
                                     return False
                             return True
                         else:
                             if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
                                 cantidadLugaresNO = xPos - xPosTarget
-                                for i in cantidadLugaresNO:
+                                for i in range(1, cantidadLugaresNO):
                                     if not board.checkEmptyPosition(xPos - i, yPos - i):
                                         return False
                                 return True
@@ -240,98 +246,112 @@ class QueenMovementSet(Interfaces.IMovement):
         pass
 
     def straightMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):  # movimiento recto
+        print(xPos, yPos, xPosTarget, yPosTarget, team, board)
         if team == 'white':
+            print("blancoo")
             if(yPosTarget>yPos):  #Retrocediendo
+                print("REtroooo")
                 cantidadLugaresRetro = yPosTarget - yPos
-                for i in cantidadLugaresRetro:
+                for i in range(cantidadLugaresRetro):
                     if not board.checkEmptyPosition(xPos, yPos + i):
                         return False
                 return True
             else:
                 cantidadLugaresAvanza = yPos - yPosTarget
-                for i in cantidadLugaresAvanza:
+                print("AvANZAA" )
+                for i in range(cantidadLugaresAvanza):
+                    print("Estamos en el for DEL DIRECTO, i vale:",i)
                     if not board.checkEmptyPosition(xPos, yPos - i):
+                        print("Devuelve FALSEEE")
                         return False
+                    print("Devuelve TRUE")
+                print("Devuelve TRUE FUERA")
                 return True
         else:
             if team == 'black':
                 if (yPosTarget > yPos):  # Avanza
                     cantidadLugaresAva = yPosTarget - yPos
-                    for i in cantidadLugaresAva:
+                    for i in range(cantidadLugaresAva):
                         if not board.checkEmptyPosition(xPos, yPos + i):
                             return False
                     return True
                 else:
                     cantidadLugaresRe = yPos - yPosTarget
-                    for i in cantidadLugaresRe:
+                    for i in range(cantidadLugaresRe):
                         if not board.checkEmptyPosition(xPos, yPos - i):
                             return False
                     return True
 
 
     def diagonalMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):  # movimiento diagonal
+        print(xPos, yPos , xPosTarget, yPosTarget, team, board)
         if team == 'white':
-            if(yPosTarget>yPos) and (xPosTarget >xPos):  #va hacia el Sur Este
+            if(yPosTarget > yPos) and (xPosTarget > xPos):  #va hacia el Sur Este
                 cantidadLugaresSE = yPosTarget - yPos
-                for i in cantidadLugaresSE:
+
+                for i in range(1,cantidadLugaresSE):
                     if not board.checkEmptyPosition(xPos+i, yPos + i):
                         return False
                 return True
-            else:
-                if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
+            if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
                     cantidadLugaresSO = yPosTarget - yPos
-                    for i in cantidadLugaresSO:
+                    for i in range(1,cantidadLugaresSO):
                         if not board.checkEmptyPosition(xPos - i, yPos + i):
                             return False
                     return True
-                else:
-                    if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
+
+            if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
                         cantidadLugaresNE = xPosTarget - xPos
-                        for i in cantidadLugaresNE:
+                        for i in range(1,cantidadLugaresNE):
                             if not board.checkEmptyPosition(xPos + i, yPos - i):
                                 return False
                         return True
-                    else:
-                        if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
+
+            if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
+                            print("VAMOS AL NO")
                             cantidadLugaresNO = xPos -xPosTarget
-                            for i in cantidadLugaresNO:
+                            print(cantidadLugaresNO)
+                            for i in range(1,cantidadLugaresNO):
+                                print("Estamos en el for, i vale:" ,i)
                                 if not board.checkEmptyPosition(xPos - i, yPos - i):
+                                    print("Devuelve FALSEEE")
                                     return False
+                                print("Devuelve TRUE")
                             return True
 
         else:
             if team == 'black':
                 if (yPosTarget > yPos) and (xPosTarget > xPos):  # va hacia el Sur Este
                     cantidadLugaresSE = yPosTarget - yPos
-                    for i in cantidadLugaresSE:
+                    for i in range(1,cantidadLugaresSE):
                         if not board.checkEmptyPosition(xPos + i, yPos + i):
                             return False
                     return True
                 else:
                     if (yPosTarget > yPos) and (xPosTarget < xPos):  # va hacia el Sur Oeste
                         cantidadLugaresSO = yPosTarget - yPos
-                        for i in cantidadLugaresSO:
+                        for i in range(1,cantidadLugaresSO):
                             if not board.checkEmptyPosition(xPos - i, yPos + i):
                                 return False
                         return True
                     else:
                         if (yPosTarget < yPos) and (xPosTarget > xPos):  # va hacia el Nor Este
                             cantidadLugaresNE = xPosTarget - xPos
-                            for i in cantidadLugaresNE:
+                            for i in range(1,cantidadLugaresNE):
                                 if not board.checkEmptyPosition(xPos + i, yPos - i):
                                     return False
                             return True
                         else:
                             if (yPosTarget < yPos) and (xPosTarget < xPos):  # va hacia el Nor Oeste
                                 cantidadLugaresNO = xPos - xPosTarget
-                                for i in cantidadLugaresNO:
+                                for i in range(1,cantidadLugaresNO):
                                     if not board.checkEmptyPosition(xPos - i, yPos - i):
                                         return False
                                 return True
 
 
 
-class KingMovementSet(Interfaces.IMovement):
+class KinghtMovementSet(Interfaces.IMovement):
     name = 'Classic king movement set'
 
     def __init__(self):
