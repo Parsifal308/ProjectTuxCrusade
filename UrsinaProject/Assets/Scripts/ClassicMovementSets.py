@@ -66,15 +66,13 @@ class PawnMovementSet(Interfaces.IMovement):
 
 class RookMovementSet(Interfaces.IMovement):
     name = 'Classic rook movement set'
-    def calculateMovement(self):
-        pass
 
     def __init__(self):
-        self.casilla1 = None  # Primer posicion de la pieza
-        self.casilla2 = None  # Segunda posicion de la pieza
-        self.color = None  # Se define el color de la pieza
+        self.xPos=None
+        self.yPos = None
+        self.xPosTarget = None
+        self.yPosTarget = None
 
-    def move(self):
         # Chequeo donde se ve si las piezas de los reyes y torres mantienen o no su posicion inicial
         self.whiteKing_moved = False
         self.blackKing_moved = False
@@ -84,47 +82,26 @@ class RookMovementSet(Interfaces.IMovement):
         self.blackRook2_moved = False
         self.enroque = False
 
-    def calculateMovement(self):
-        pass
-
-    def basicMovement(self):  # chequea que entre dos casillas haya libertad de paso/no haya otras piezas
-        if self.casilla1[0] == self.casilla2[0]:  # movimiento vertical
-            pos1 = min(int(self.casilla1[1]), int(self.casilla2[1]))
-            pos2 = max(int(self.casilla1[1]), int(self.casilla2[1]))
-
-            for i in range(pos1 + 1, pos2):
-                square_on_path = ""  # SE CHEQUEAN LOS CASILLEROS
-                if square_on_path != "":  # OTRA PIEZA
-                    # SE INSERTA MOVIMIENTO_PERMITIDO()
-                    # SE INSERTA ALIADOS()
-                    return False
-
-        elif self.casilla1[1] == self.casilla2[1]:  # movimiento horizontal
-            pos1 = min(self.ranks.find(self.casilla1[0]), self.ranks.find(self.casilla2[0]))
-            pos2 = max(self.ranks.find(self.casilla1[0]), self.ranks.find(self.casilla2[0]))
-
-            for i in range(pos1 + 1, pos2):
-                square_on_path = ""  # SE CHEQUEAN LOS CASILLEROS
-                if square_on_path != "":  # OTRA PIEZA
-                    # SE INSERTA MOVIMIENTO_PERMITIDO()
-                    # SE INSERTA ALIADOS()
-                    return False
-
-        def aliados(self):  # chequea que no ataque piezas amigas
-            pieza2_color = ""  # CODIGO QUE DEFINA LA SEGUNDA PIEZA
-            if self.color == "white" and pieza2_color in self.color == "white":
-                return True
-            if self.color == "black" and pieza2_color in self.color == "black":
-                return True
-            else:
-                return False
-
-        def movimiento_permitido(
-                self):  # Chequea que pueda moverse al casillero deseado (en este caso vertical/horizontal)
-            if self.color == "white" or self.color == "black":  # se chequea el color de las piezas
-                if (int(self.casilla1[1]) == int(self.casilla2[1]) or self.casilla1[0] == self.casilla2[0]):
-                    return True
-            return False
+    def basicMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):  # chequea que entre dos casillas haya libertad de paso/no haya otras piezas
+        directions=((-1,0),(0,-1),(1,0),(0,1))
+        if (team=='white'):
+            for d in directions:
+                for i in range(1,8):
+                    endRow = xPos + d[0]*i
+                    endCol = yPos + d[1]*i
+                    if 0<=endRow<8 and 0<=endCol<8:
+                        if (xPosTarget, yPosTarget) == (endRow, yPos):
+                            if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
+                                return True
+                            else:
+                                break
+                        elif (xPosTarget, yPosTarget) == (xPos, endCol):
+                            if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
+                                return True
+                            else:
+                                break
+                    else:
+                        break
 
     def specialMovement(self):  # ENROQUE
         # CODIGO A INCLUIR
@@ -148,6 +125,12 @@ class RookMovementSet(Interfaces.IMovement):
                 return True
         else:  # No hay posibilidad alguna de realizar enroque
             return False
+
+    def move(self):
+        pass
+
+    def calculateMovement(self):
+        pass
 
 class BishopMovementSet(Interfaces.IMovement):
     name = 'Classic bishop movement set'
@@ -334,34 +317,19 @@ class QueenMovementSet(Interfaces.IMovement):
 class KnightMovementSet(Interfaces.IMovement):
     name = 'Classic knight movement set'
 
-    def __init__(self):
-        self.casilla1=None  #Primer posicion de la pieza
-        self.casilla2=None  #Segunda posicion de la pieza
-        self.color=None     #Se define el color de la pieza
+    def basicMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
+        directions = ((-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1))
+        if (team=='white'):
+            for d in directions:
+                endRow = xPos + d[0]
+                endCol = yPos + d[1]
+                if 0<=endRow<8 and 0<=endCol<8:
+                    if (xPosTarget, yPosTarget) == (endRow, endCol):
+                        if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
+                            return True
 
     def calculateMovement(self):
         pass
 
     def move(self):
         pass
-    def basicMovement(self):
-        def aliados(self):  # chequea que no ataque piezas amigas
-            pieza2_color = ""  # CODIGO QUE DEFINA LA SEGUNDA PIEZA
-            if self.color == "white" and pieza2_color in self.color == "white":
-                return True
-            if self.color == "black" and pieza2_color in self.color == "black":
-                return True
-            else:
-                return False
-
-        def movimiento_permitido(self):  # Chequea que pueda moverse al casillero deseado (en este caso vertical/horizontal)
-            if self.color == "white" or self.color == "black":  # se chequea el color de las piezas
-                if (int(self.casilla1[1]) == int(self.casilla2[1]) or self.casilla1[0] == self.casilla2[0]):
-                    return True
-            return False
-
-        if self.casilla1 == (self.color=="white") or self.casilla1 == (self.color=="black"):
-            if (abs(int(self.casilla1[1]) - int(self.casilla2[1])) == 2) and (abs(self.ranks.find(self.casilla1[0]) - self.ranks.find(self.casilla2[0])) == 1): #Movimiento de "L Vertical"
-                return True
-            if (abs(int(self.casilla1[1]) - int(self.casilla2[1])) == 1) and (abs(self.ranks.find(self.casilla1[0]) - self.ranks.find(self.casilla2[0])) == 2): #Movimiento de "L Horizontal"
-                return True

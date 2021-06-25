@@ -28,6 +28,7 @@ class Rook(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.RookMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'Rook'
@@ -47,6 +48,7 @@ class Knight(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.KnightMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'Knight'

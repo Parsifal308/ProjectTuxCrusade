@@ -66,23 +66,29 @@ class boardPosition(Button):
 
                         else:
                             print("MOVIMIENTO NO PERMITIDO")
-
+                    #TORRE
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Rook':
-                        print("si intento mover una torre a algun lado....")
-                        # aca iria el checkeo con los metodos de la clase moveset
-
+                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                            print("ES POSIBLE REALIZAR EL MOVIMIENTO")
+                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
+                        else:
+                            print("MOVIMIENTO NO PERMITIDO")
+                    #ALFIL
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Bishop':
                         print("si intento mover un alfil a algun lado....")
                         # aca iria el checkeo con los metodos de la clase moveset
-
+                    #CABALLO
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Knight':
-                        print("si intento mover un caballo a algun lado....")
-                        # aca iria el checkeo con los metodos de la clase moveset
-
+                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0],self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                            print("ES POSIBLE REALIZAR EL MOVIMIENTO")
+                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex)
+                        else:
+                            print("MOVIMIENTO NO PERMITIDO")
+                    #REINA
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Queen':
                         print("si intento mover la reina a algun lado....")
                         # aca iria el checkeo con los metodos de la clase moveset
-
+                    #REY
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'King':
                         print("si intento mover el Rey a algun lado....")
                         # aca iria el checkeo con los metodos de la clase moveset
@@ -102,14 +108,14 @@ class classicBoard(IBoard):
 
     def SetPieces(self):
         print('Ubicando las piezas')
-        self.positions[1, 0, 1] = Pawn('black', Vec3((1, 0, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 1, 1] = Pawn('black', Vec3((1, 1, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 2, 1] = Pawn('black', Vec3((1, 2, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 3, 1] = Pawn('black', Vec3((1, 3, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 4, 1] = Pawn('black', Vec3((1, 4, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 5, 1] = Pawn('black', Vec3((1, 5, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 6, 1] = Pawn('black', Vec3((1, 6, 0.5)), 0.75, 90, 90, 90)
-        self.positions[1, 7, 1] = Pawn('black', Vec3((1, 7, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 0, 1] = Pawn('black', Vec3((1, 0, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 1, 1] = Pawn('black', Vec3((1, 1, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 2, 1] = Pawn('black', Vec3((1, 2, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 3, 1] = Pawn('black', Vec3((1, 3, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 4, 1] = Pawn('black', Vec3((1, 4, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 5, 1] = Pawn('black', Vec3((1, 5, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 6, 1] = Pawn('black', Vec3((1, 6, 0.5)), 0.75, 90, 90, 90)
+        #self.positions[1, 7, 1] = Pawn('black', Vec3((1, 7, 0.5)), 0.75, 90, 90, 90)
 
         self.positions[0, 0, 1] = Rook('black', Vec3((0, 0, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 1, 1] = Knight('black', Vec3((0, 1, 0.5)), 0.5, 90, 90, 90)
@@ -120,22 +126,22 @@ class classicBoard(IBoard):
         self.positions[0, 6, 1] = Knight('black', Vec3((0, 6, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 7, 1] = Rook('black', Vec3((0, 7, 0.5)), 0.5, 90, 90, 90)
 
-        self.positions[6, 0, 1] = Pawn('white', Vec3((6, 0, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 1, 1] = Pawn('white', Vec3((6, 1, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 2, 1] = Pawn('white', Vec3((6, 2, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 3, 1] = Pawn('white', Vec3((6, 3, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 4, 1] = Pawn('white', Vec3((6, 4, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 5, 1] = Pawn('white', Vec3((6, 5, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 6, 1] = Pawn('white', Vec3((6, 6, 0.5)), 0.75, -90, 0, 0)
-        self.positions[6, 7, 1] = Pawn('white', Vec3((6, 7, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 0, 1] = Pawn('white', Vec3((6, 0, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 1, 1] = Pawn('white', Vec3((6, 1, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 2, 1] = Pawn('white', Vec3((6, 2, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 3, 1] = Pawn('white', Vec3((6, 3, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 4, 1] = Pawn('white', Vec3((6, 4, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 5, 1] = Pawn('white', Vec3((6, 5, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 6, 1] = Pawn('white', Vec3((6, 6, 0.5)), 0.75, -90, 0, 0)
+        #self.positions[6, 7, 1] = Pawn('white', Vec3((6, 7, 0.5)), 0.75, -90, 0, 0)
 
         self.positions[7, 0, 1] = Rook('white', Vec3((7, 0, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 1, 1] = Knight('white', Vec3((7, 1, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 2, 1] = Bishop('white', Vec3((7, 2, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 3, 1] = Queen('white', Vec3((7, 3, 0.5)), 0.5, -90, 0, 0)
+        #self.positions[7, 2, 1] = Bishop('white', Vec3((7, 2, 0.5)), 0.5, -90, 0, 0)
+        #self.positions[7, 3, 1] = Queen('white', Vec3((7, 3, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 4, 1] = King('white', Vec3((7, 4, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 5, 1] = Bishop('white', Vec3((7, 5, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 6, 1] = Knight('white', Vec3((7, 6, 0.5)), 0.5, -90, 0, 0)
+        #self.positions[7, 5, 1] = Bishop('white', Vec3((7, 5, 0.5)), 0.5, -90, 0, 0)
+        #self.positions[7, 6, 1] = Knight('white', Vec3((7, 6, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 7, 1] = Rook('white', Vec3((7, 7, 0.5)), 0.5, -90, 0, 0)
 
     def SetBoard(self):

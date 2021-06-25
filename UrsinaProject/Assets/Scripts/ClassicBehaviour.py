@@ -15,7 +15,7 @@ class RookBehaviour(IBehaviour):
         pass
 
 
-class knightBehaviour(IBehaviour):
+class KnightBehaviour(IBehaviour):
     name = 'Classic knight behaviour'
 
     def computeTurn(self):
