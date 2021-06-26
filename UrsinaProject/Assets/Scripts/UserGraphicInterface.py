@@ -237,11 +237,13 @@ class CollectibleMenu(IMenu):
     name = 'Menu de desbloqueables'
     kingLinuxButton = None
     queenLinuxButton = None
+    bishopLinuxButton = None
     towerLinuxButton = None
     horseLinuxButton = None
     pawnLinuxButton = None
     kingWindowsButton = None
     queenWindowsButton = None
+    bishopWindowsButton = None
     towerWindowsButton = None
     horseWindowsButton = None
     pawnWindowsButton = None
@@ -261,6 +263,11 @@ class CollectibleMenu(IMenu):
                                          color=color.gray,
                                          scale=(0.2, 0.2),
                                          position=(-0.4, 0.1))
+        self.bishopWindowsButton = Button(text='Bishop Windows',
+                                      text_color=color.white,
+                                      color=color.gray,
+                                      scale=(0.2, 0.2),
+                                      position=(-0.1, -0.15))
         self.towerWindowsButton = Button(text='Tower Windows',
                                          text_color=color.white,
                                          color=color.gray,
@@ -286,6 +293,11 @@ class CollectibleMenu(IMenu):
                                        color=color.gray,
                                        scale=(0.2, 0.2),
                                        position=(-0.7, 0.1))
+        self.bishopLinuxButton = Button(text='Bishop Linux',
+                                      text_color=color.white,
+                                      color=color.gray,
+                                      scale=(0.2, 0.2),
+                                      position=(-0.1, -0.40))
         self.towerLinuxButton = Button(text='Tower Linux',
                                        text_color=color.white,
                                        color=color.gray,
@@ -311,11 +323,13 @@ class CollectibleMenu(IMenu):
         self.backButton.enable()
         self.kingLinuxButton.enable()
         self.queenLinuxButton.enable()
+        self.bishopLinuxButton.enable()
         self.towerLinuxButton.enable()
         self.horseLinuxButton.enable()
         self.pawnLinuxButton.enable()
         self.kingWindowsButton.enable()
         self.queenWindowsButton.enable()
+        self.bishopWindowsButton.enable()
         self.towerWindowsButton.enable()
         self.horseWindowsButton.enable()
         self.pawnWindowsButton.enable()
@@ -324,11 +338,13 @@ class CollectibleMenu(IMenu):
         self.backButton.disable()
         self.kingLinuxButton.disable()
         self.queenLinuxButton.disable()
+        self.bishopLinuxButton.disable()
         self.towerLinuxButton.disable()
         self.horseLinuxButton.disable()
         self.pawnLinuxButton.disable()
         self.kingWindowsButton.disable()
         self.queenWindowsButton.disable()
+        self.bishopWindowsButton.disable()
         self.towerWindowsButton.disable()
         self.horseWindowsButton.disable()
         self.pawnWindowsButton.disable()
