@@ -1,33 +1,11 @@
 from ursina import *
 from Assets.Scripts import ClassicBoard
+from Assets.Scripts.ClassicPieces import pieces
 import numpy
 
 global whiteTurn
 global cameraParent
 global board
-pieces = {"modeloBasico":{"Null":None,
-                          "PawnW":"Base Pawn.obj",
-                          "RookW":"Base Rook.obj",
-                          "KnightW":"Base Knight.obj",
-                          "BishopW":"Base Bishop.obj",
-                          "QueenW":"Base Queen.obj",
-                          "KingW":"Base King.obj",
-                          "PawnB": "Base Pawn.obj",
-                          "RookB": "Base Rook.obj",
-                          "KnightB": "Base Knight.obj",
-                          "BishopB": "Base Bishop.obj",
-                          "QueenB": "Base Queen.obj",
-                          "KingB": "Base King.obj"
-                          },
-          "textura":{"Null":None,
-                     "White":"Stone Blocks 01",
-                     "Black":"Dark Stone Wall 01"},
-          "color":{"Null":None,
-                   "white":"white",
-                   "black":"black",
-                   "Linux":"blue",
-                   "Windows":"red"}
-          }
 
 cameraParent = Entity(position=(3.5, 3.5, 0))
 
