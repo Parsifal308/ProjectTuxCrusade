@@ -169,14 +169,34 @@ class BishopMovementSet(Interfaces.IMovement):
 
                 for i in range(1, cantidadLugaresSE + 1):
                     if not board.checkEmptyPosition(xPos + i, yPos + i):
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                            if (yPos + i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 return True
             if (yPosTarget > yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el NOR este
                 print("VA AL NE")
                 cantidadLugaresNE = yPosTarget - yPos
                 for i in range(1, cantidadLugaresNE + 1):
                     if not board.checkEmptyPosition(xPos - i, yPos + i):
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                            if (yPos + i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 return True
 
             if (yPosTarget < yPos) and (xPosTarget > xPos) and difX == difY:  # va hacia el Nor OEste
@@ -184,7 +204,17 @@ class BishopMovementSet(Interfaces.IMovement):
                 cantidadLugaresNE = xPosTarget - xPos
                 for i in range(1, cantidadLugaresNE + 1):
                     if not board.checkEmptyPosition(xPos + i, yPos - i):
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                            if (yPos - i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 return True
 
             if (yPosTarget < yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el Nor Oeste
@@ -194,8 +224,17 @@ class BishopMovementSet(Interfaces.IMovement):
                 for i in range(1, cantidadLugaresNO + 1):
                     print("Estamos en el for, i vale:", i)
                     if not board.checkEmptyPosition(xPos - i, yPos - i):
-                        print("Devuelve FALSEEE")
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                            if (yPos - i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                     print("Devuelve TRUE NO")
                 return True
             else:
@@ -209,14 +248,34 @@ class BishopMovementSet(Interfaces.IMovement):
 
                     for i in range(1, cantidadLugaresSE + 1):
                         if not board.checkEmptyPosition(xPos + i, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
                 if (yPosTarget > yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el NOR este
                     print("VA AL NE")
                     cantidadLugaresNE = yPosTarget - yPos
                     for i in range(1, cantidadLugaresNE + 1):
                         if not board.checkEmptyPosition(xPos - i, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
 
                 if (yPosTarget < yPos) and (xPosTarget > xPos) and difX == difY:  # va hacia el Nor OEste
@@ -224,7 +283,17 @@ class BishopMovementSet(Interfaces.IMovement):
                     cantidadLugaresNE = xPosTarget - xPos
                     for i in range(1, cantidadLugaresNE + 1):
                         if not board.checkEmptyPosition(xPos + i, yPos - i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                                if (yPos - i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
 
                 if (yPosTarget < yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el Nor Oeste
@@ -234,8 +303,17 @@ class BishopMovementSet(Interfaces.IMovement):
                     for i in range(1, cantidadLugaresNO + 1):
                         print("Estamos en el for, i vale:", i)
                         if not board.checkEmptyPosition(xPos - i, yPos - i):
-                            print("Devuelve FALSEEE")
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                                if (yPos - i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                         print("Devuelve TRUE NO")
                     return True
                 else:
@@ -272,9 +350,18 @@ class QueenMovementSet(Interfaces.IMovement):
                 for i in range(1,cantidadLugaresSur+1):
                     #entramos si esta ocupado el lugar
                     if not board.checkEmptyPosition(xPos+i, yPos):
+
                         #entramos si es del mismo equipo
-                        if board.checkTeam(xPos,yPos,xPosTarget,yPosTarget):
+                        if board.checkTeam(xPos,yPos,xPos+i,yPos):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
                             return False
+                        if not board.checkTeam(xPos, yPos, xPos+i, yPos):
+                            if (xPos + i != xPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 print("Devuelve TRUE SUR")
                 return True
             if(xPos>xPosTarget and yPos == yPosTarget):
@@ -284,8 +371,16 @@ class QueenMovementSet(Interfaces.IMovement):
                     if not board.checkEmptyPosition(xPos-i, yPos):
                         print("Devuelve FALSEEE")
                         # entramos si es del mismo equipo
-                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        if board.checkTeam(xPos, yPos, xPos-i, yPos):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
                             return False
+                        if not board.checkTeam(xPos, yPos, xPos-i, yPos):
+                            if(xPos-i!=xPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos,yPos, xPosTarget,yPosTarget)
+                                return True
                     print("Devuelve TRUE")
                 print("Devuelve TRUE FUERA")
                 print("Devuelve TRUE NORTE")
@@ -299,8 +394,16 @@ class QueenMovementSet(Interfaces.IMovement):
                     print("Estamos en el for DEL ESTE, i vale:", i)
                     if not board.checkEmptyPosition(xPos, yPos+i):
                         # entramos si es del mismo equipo
-                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        if board.checkTeam(xPos, yPos, xPos, yPos+i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
                             return False
+                        if not board.checkTeam(xPos, yPos, xPos, yPos + i):
+                            if (yPos + i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 print("Devuelve TRUE ESTE")
                 return True
             if(yPos>yPosTarget and xPos == xPosTarget): #DE COSTADO HACIA EL OESTE
@@ -312,8 +415,16 @@ class QueenMovementSet(Interfaces.IMovement):
                     if not board.checkEmptyPosition(xPos, yPos-i):
                         print("Devuelve FALSEEE")
                         # entramos si es del mismo equipo
-                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        if board.checkTeam(xPos, yPos, xPos, yPos-i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
                             return False
+                        if not board.checkTeam(xPos, yPos, xPos, yPos-i):
+                            if (yPos - i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                     print("Devuelve TRUE")
                 print("Devuelve TRUE FUERA")
                 print("Devuelve TRUE OESTE")
@@ -322,13 +433,26 @@ class QueenMovementSet(Interfaces.IMovement):
                 return False
         else:
             if team == 'black':
-                print("blancoo")
-                if (xPosTarget > xPos and yPos == yPosTarget):  # va al sur
+                print("NEGRO")
+                if xPosTarget > xPos and yPos == yPosTarget:  # va al sur
                     print("SURR")
                     cantidadLugaresSur = xPosTarget - xPos
                     for i in range(1, cantidadLugaresSur + 1):
+                        # entramos si esta ocupado el lugar
                         if not board.checkEmptyPosition(xPos + i, yPos):
-                            return False
+
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos + i, yPos):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos + i, yPos):
+                                if (xPos + i != xPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
+                    print("Devuelve TRUE SUR")
                     return True
                 if (xPos > xPosTarget and yPos == yPosTarget):
                     cantidadLugaresNorte = xPos - xPosTarget
@@ -336,28 +460,59 @@ class QueenMovementSet(Interfaces.IMovement):
                     for i in range(1, cantidadLugaresNorte + 1):
                         print("Estamos en el for DEL DIRECTO, i vale:", i)
                         if not board.checkEmptyPosition(xPos - i, yPos):
-                            print("Devuelve FALSEEE")
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos - i, yPos):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos - i, yPos):
+                                if (xPos - i != xPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                         print("Devuelve TRUE")
-                    print("Devuelve TRUE FUERA")
+                    print("Devuelve TRUE NORTE")
                     return True
                 if (yPosTarget > yPos and xPos == xPosTarget):  # de costado HACIA EL ESTE
                     print("ESTEE")
-                    cantidadLugaresEste = xPosTarget - xPos
+                    cantidadLugaresEste = yPosTarget - yPos
+                    print("Lugares al este: ", cantidadLugaresEste)
                     for i in range(1, cantidadLugaresEste + 1):
+                        print("Estamos en el for DEL ESTE, i vale:", i)
                         if not board.checkEmptyPosition(xPos, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
+                    print("Devuelve TRUE ESTE")
                     return True
                 if (yPos > yPosTarget and xPos == xPosTarget):  # DE COSTADO HACIA EL OESTE
-                    cantidadLugaresOeste = xPos - xPosTarget
+                    cantidadLugaresOeste = yPos - yPosTarget
                     print("costado Oeste : ", cantidadLugaresOeste)
                     for i in range(1, cantidadLugaresOeste + 1):
                         print("Estamos en el for DEL DIRECTO, i vale:", i)
                         if not board.checkEmptyPosition(xPos, yPos - i):
-                            print("Devuelve FALSEEE")
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos, yPos - i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos, yPos - i):
+                                if (yPos - i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                         print("Devuelve TRUE")
-                    print("Devuelve TRUE FUERA")
+                    print("Devuelve TRUE OESTE")
                     return True
                 else:
                     return False
@@ -374,14 +529,34 @@ class QueenMovementSet(Interfaces.IMovement):
 
                 for i in range(1,cantidadLugaresSE+1):
                     if not board.checkEmptyPosition(xPos+i, yPos + i):
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos+i, yPos + i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos+i, yPos + i):
+                            if (yPos + i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                 return True
             if (yPosTarget > yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el NOR este
                     print("VA AL NE")
                     cantidadLugaresNE = yPosTarget - yPos
                     for i in range(1,cantidadLugaresNE+1):
                         if not board.checkEmptyPosition(xPos - i, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos-i, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos-i, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
 
             if (yPosTarget < yPos) and (xPosTarget > xPos) and difX == difY:  # va hacia el Nor OEste
@@ -389,7 +564,17 @@ class QueenMovementSet(Interfaces.IMovement):
                         cantidadLugaresNE = xPosTarget - xPos
                         for i in range(1,cantidadLugaresNE+1):
                             if not board.checkEmptyPosition(xPos + i, yPos - i):
-                                return False
+                                # entramos si es del mismo equipo
+                                if board.checkTeam(xPos, yPos, xPos+i, yPos - i):
+                                    print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                    return False
+                                if not board.checkTeam(xPos, yPos, xPos+i, yPos - i):
+                                    if (yPos - i != yPosTarget):
+                                        print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                        return False
+                                    else:
+                                        board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                        return True
                         return True
 
             if (yPosTarget < yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el Nor Oeste
@@ -399,8 +584,17 @@ class QueenMovementSet(Interfaces.IMovement):
                 for i in range(1,cantidadLugaresNO+1):
                     print("Estamos en el for, i vale:" ,i)
                     if not board.checkEmptyPosition(xPos - i, yPos - i):
-                        print("Devuelve FALSEEE")
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPos-i, yPos - i):
+                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                            return False
+                        if not board.checkTeam(xPos, yPos, xPos-i, yPos - i):
+                            if (yPos - i != yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                return False
+                            else:
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
                     print("Devuelve TRUE NO")
                 return True
             else:
@@ -414,14 +608,34 @@ class QueenMovementSet(Interfaces.IMovement):
 
                     for i in range(1, cantidadLugaresSE + 1):
                         if not board.checkEmptyPosition(xPos + i, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos + i, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
                 if (yPosTarget > yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el NOR este
                     print("VA AL NE")
                     cantidadLugaresNE = yPosTarget - yPos
                     for i in range(1, cantidadLugaresNE + 1):
                         if not board.checkEmptyPosition(xPos - i, yPos + i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos - i, yPos + i):
+                                if (yPos + i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
 
                 if (yPosTarget < yPos) and (xPosTarget > xPos) and difX == difY:  # va hacia el Nor OEste
@@ -429,7 +643,17 @@ class QueenMovementSet(Interfaces.IMovement):
                     cantidadLugaresNE = xPosTarget - xPos
                     for i in range(1, cantidadLugaresNE + 1):
                         if not board.checkEmptyPosition(xPos + i, yPos - i):
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos + i, yPos - i):
+                                if (yPos - i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                     return True
 
                 if (yPosTarget < yPos) and (xPosTarget < xPos) and difX == difY:  # va hacia el Nor Oeste
@@ -439,8 +663,17 @@ class QueenMovementSet(Interfaces.IMovement):
                     for i in range(1, cantidadLugaresNO + 1):
                         print("Estamos en el for, i vale:", i)
                         if not board.checkEmptyPosition(xPos - i, yPos - i):
-                            print("Devuelve FALSEEE")
-                            return False
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPos - i, yPos - i):
+                                if (yPos - i != yPosTarget):
+                                    print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
+                                    return False
+                                else:
+                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                    return True
                         print("Devuelve TRUE NO")
                     return True
                 else:
