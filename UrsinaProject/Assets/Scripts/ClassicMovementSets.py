@@ -331,7 +331,7 @@ class QueenMovementSet(Interfaces.IMovement):
 
 
 
-class KingMovementSet(Interfaces.IMovement):
+class KnightMovementSet(Interfaces.IMovement):
     name = 'Classic king movement set'
 
     def __init__(self):

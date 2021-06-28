@@ -24,9 +24,13 @@ class boardPosition(Button):
     def input(self, key):
         if self.hovered:
             if key == 'left mouse down':
-
+                print("POSICION DE LA MATRIZ: " + str(self.xIndex) + "." + str(self.yIndex))
+                if self.parent.positions[self.xIndex, self.yIndex, 1] is not None:
+                    print("EN ESTA POSICION SE ENCUENTRA: " + self.parent.positions[self.xIndex, self.yIndex, 1].name)
+                else:
+                    print("ESTA POSICION SE ENCUENTRA VACIA :(")
                 if not self.parent.pieceSelected:  # si no hay nada selecionado
-                    print("POSICION DE LA MATRIZ: " + str(self.xIndex) + "." + str(self.yIndex))
+
 
                     if not self.parent.checkEmptyPosition(self.xIndex, self.yIndex):  # si no esta vacio
 
@@ -93,7 +97,7 @@ class classicBoard(IBoard):
     selectedPosition = None
     targetPosition = None
     pieceSelected = False
-    boardStates = numpy.empty(shape=(8, 8, 1), dtype=Entity)
+    boardStates = numpy.empty(shape=(8, 8, 2), dtype=Entity)
 
     def __init__(self):
         self.ySize = 8
@@ -113,10 +117,10 @@ class classicBoard(IBoard):
 
         self.positions[0, 0, 1] = Rook('black', Vec3((0, 0, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 1, 1] = Knight('black', Vec3((0, 1, 0.5)), 0.5, 90, 90, 90)
-        self.positions[0, 2, 1] = Bishop('black', Vec3((0, 2, 0.5)), 0.5, 90, 90, 90)
+        self.positions[0, 2, 1] = Bishop('black', Vec3((0, 2, 0.5)), 0.75, 90, 90, 90)
         self.positions[0, 3, 1] = Queen('black', Vec3((0, 3, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 4, 1] = King('black', Vec3((0, 4, 0.5)), 0.5, 90, 90, 90)
-        self.positions[0, 5, 1] = Bishop('black', Vec3((0, 5, 0.5)), 0.5, 90, 90, 90)
+        self.positions[0, 5, 1] = Bishop('black', Vec3((0, 5, 0.5)), 0.75, 90, 90, 90)
         self.positions[0, 6, 1] = Knight('black', Vec3((0, 6, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 7, 1] = Rook('black', Vec3((0, 7, 0.5)), 0.5, 90, 90, 90)
 
@@ -131,10 +135,10 @@ class classicBoard(IBoard):
 
         self.positions[7, 0, 1] = Rook('white', Vec3((7, 0, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 1, 1] = Knight('white', Vec3((7, 1, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 2, 1] = Bishop('white', Vec3((7, 2, 0.5)), 0.5, -90, 0, 0)
+        self.positions[7, 2, 1] = Bishop('white', Vec3((7, 2, 0.5)), 0.75, -90, 0, 0)
         self.positions[7, 3, 1] = Queen('white', Vec3((7, 3, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 4, 1] = King('white', Vec3((7, 4, 0.5)), 0.5, -90, 0, 0)
-        self.positions[7, 5, 1] = Bishop('white', Vec3((7, 5, 0.5)), 0.5, -90, 0, 0)
+        self.positions[7, 5, 1] = Bishop('white', Vec3((7, 5, 0.5)), 0.75, -90, 0, 0)
         self.positions[7, 6, 1] = Knight('white', Vec3((7, 6, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 7, 1] = Rook('white', Vec3((7, 7, 0.5)), 0.5, -90, 0, 0)
 
@@ -166,14 +170,21 @@ class classicBoard(IBoard):
 
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
-        print(self.positions[xPos][yPos][1])
-        self.positions[xTarget][xTarget][1] = self.positions[xPos][yPos][1]
-        print(self.positions[xTarget][xTarget][1])
+        print("--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + " . " + str(yPos))
+
+        self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
+        print("--->ACTUALIZANDO PIEZA EN MATRIZ, DE: " + str(xPos) +" . " + str(yPos) +" HACIA ->" + str(xTarget) +" . "+ str(yTarget))
+
         self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
-        print(self.positions[self.selectedPosition[0]][self.selectedPosition[1], 1])
+        print("--->REINICIANDO COLOR DE POSICION INICIAL: " + str(self.selectedPosition[0]) + " . " + str(self.selectedPosition[1]))
+
         self.pieceSelected = False
+        print("--->PIEZA SELECCIONADA: " + str(self.pieceSelected))
+
         self.positions[xPos][yPos][1] = None
-        print(self.positions[xPos][yPos][1])
+        print("--->POSICION ORGINAL OCUPADA POR: " + str(self.positions[xPos][yPos][1]))
+        print("--->POSICION NUEVA OCUPADA POR: " + str(self.positions[xTarget][yTarget][1]))
+
 
 
 
