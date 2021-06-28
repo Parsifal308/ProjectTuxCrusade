@@ -271,8 +271,12 @@ class QueenMovementSet(Interfaces.IMovement):
                 print("SURR")
                 cantidadLugaresSur = xPosTarget - xPos
                 for i in range(1,cantidadLugaresSur+1):
+                    #entramos si esta ocupado el lugar
                     if not board.checkEmptyPosition(xPos+i, yPos):
-                        return False
+                        #entramos si es del mismo equipo
+                        if board.checkTeam(xPos,yPos,xPosTarget,yPosTarget):
+                            return False
+                print("Devuelve TRUE SUR")
                 return True
             if(xPos>xPosTarget and yPos == yPosTarget):
                 cantidadLugaresNorte = xPos - xPosTarget
@@ -280,28 +284,35 @@ class QueenMovementSet(Interfaces.IMovement):
                 for i in range(1,cantidadLugaresNorte+1):
                     print("Estamos en el for DEL DIRECTO, i vale:",i)
                     if not board.checkEmptyPosition(xPos-i, yPos):
-                        print("Devuelve FALSEEE")
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                            return False
                     print("Devuelve TRUE")
-                print("Devuelve TRUE FUERA")
+                print("Devuelve TRUE NORTE")
                 return True
             if(yPosTarget>yPos and xPos == xPosTarget):  #de costado HACIA EL ESTE
                 print("ESTEE")
-                cantidadLugaresEste = xPosTarget - xPos
+                cantidadLugaresEste = yPosTarget - yPos
+                print("Lugares al este: ",cantidadLugaresEste)
                 for i in range(1, cantidadLugaresEste + 1):
+                    print("Estamos en el for DEL ESTE, i vale:", i)
                     if not board.checkEmptyPosition(xPos, yPos+i):
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                            return False
+                print("Devuelve TRUE ESTE")
                 return True
             if(yPos>yPosTarget and xPos == xPosTarget): #DE COSTADO HACIA EL OESTE
-                cantidadLugaresOeste = xPos - xPosTarget
+                cantidadLugaresOeste = yPos - yPosTarget
                 print("costado Oeste : ", cantidadLugaresOeste)
                 for i in range(1, cantidadLugaresOeste + 1):
                     print("Estamos en el for DEL DIRECTO, i vale:", i)
                     if not board.checkEmptyPosition(xPos, yPos-i):
-                        print("Devuelve FALSEEE")
-                        return False
+                        # entramos si es del mismo equipo
+                        if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                            return False
                     print("Devuelve TRUE")
-                print("Devuelve TRUE FUERA")
+                print("Devuelve TRUE OESTE")
                 return True
             else:
                 return False

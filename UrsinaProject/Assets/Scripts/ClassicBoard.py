@@ -180,6 +180,14 @@ class classicBoard(IBoard):
         else:
             return False
 
+    def checkTeam(self,xPos,yPos,xTarget,yTarget):
+        print("Pieza inicio: ",self.positions[xPos][yPos][1].team, "Pieza fin",self.positions[xTarget][yTarget][1].team)
+        if self.positions[xPos][yPos][1].team == self.positions[xTarget][yTarget][1].team:
+            #si son del mismo equipo devuelve true
+            return True
+        else:
+            return False
+
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
         print("--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + " . " + str(yPos))
