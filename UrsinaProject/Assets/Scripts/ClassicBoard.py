@@ -185,6 +185,22 @@ class classicBoard(IBoard):
         else:
             return False
 
+    def checkTeam(self,xPos,yPos,xTarget,yTarget):
+        print("Pieza inicio: ",self.positions[xPos][yPos][1].team)
+        print("Pieza fin",self.positions[xTarget][yTarget][1].team)
+        if self.positions[xPos][yPos][1].team == self.positions[xTarget][yTarget][1].team:
+            #si son del mismo equipo devuelve true
+            return True
+        else:
+            return False
+
+    def capturarPieza(self,xPos,yPos, xTarget,yTarget):
+        print(self.positions[xTarget][yTarget][1].name)
+
+        #ESTE HACE LA MAGIAAA COME LA PIEZA y LA PONE AFUERA
+        self.positions[xTarget][yTarget][1].entity.position = Vec3(8, 8, 0.5)
+        print("--->CAPTURANDO PIEZA: " + str(xPos) + " . " + str(yPos))
+
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
         self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
