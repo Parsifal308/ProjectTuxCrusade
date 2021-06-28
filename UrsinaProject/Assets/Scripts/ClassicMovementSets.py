@@ -693,6 +693,14 @@ class KnightMovementSet(Interfaces.IMovement):
                     if (xPosTarget, yPosTarget) == (endRow, endCol):
                         if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                             return True
+                        elif not board.checkEmptyPosition(xPos, yPos):
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
         elif(team!='white'):
             for d in directions:
                 endRow = xPos + d[0]
@@ -701,7 +709,15 @@ class KnightMovementSet(Interfaces.IMovement):
                     if (xPosTarget, yPosTarget) == (endRow, endCol):
                         if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                             return True
-
+                        elif not board.checkEmptyPosition(xPos, yPos):
+                            # entramos si es del mismo equipo
+                            if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                                print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
+                                return False
+                            if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                                return True
+                            
     def calculateMovement(self):
         pass
 

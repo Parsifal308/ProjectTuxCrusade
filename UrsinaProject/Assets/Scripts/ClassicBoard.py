@@ -99,8 +99,7 @@ class boardPosition(Button):
                         else:
                             if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().diagonalMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex,self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(),self.parent):
                                 print("ES POSIBLE REALIZAR EL MOVIMIENTO")
-                                self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],
-                                                      self.xIndex, self.yIndex)
+                                self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex)
                             else:
                                 print("MOVIMIENTO NO PERMITIDO")
                     #REY
