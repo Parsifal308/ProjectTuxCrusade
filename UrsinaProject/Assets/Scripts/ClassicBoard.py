@@ -135,10 +135,10 @@ class classicBoard(IBoard):
         self.positions[0, 6, 1] = Knight('black', Vec3((0, 6, 0.5)), 0.5, 90, 90, 90)
         self.positions[0, 7, 1] = Rook('black', Vec3((0, 7, 0.5)), 0.5, 90, 90, 90)
 
-        # self.positions[6, 0, 1] = Pawn('white', Vec3((6, 0, 0.5)), 0.75, -90, 0, 0)
-        #  self.positions[6, 1, 1] = Pawn('white', Vec3((6, 1, 0.5)), 0.75, -90, 0, 0)
-        # self.positions[6, 2, 1] = Pawn('white', Vec3((6, 2, 0.5)), 0.75, -90, 0, 0)
-        #  self.positions[6, 3, 1] = Pawn('white', Vec3((6, 3, 0.5)), 0.75, -90, 0, 0)
+        self.positions[6, 0, 1] = Pawn('white', Vec3((6, 0, 0.5)), 0.75, -90, 0, 0)
+        self.positions[6, 1, 1] = Pawn('white', Vec3((6, 1, 0.5)), 0.75, -90, 0, 0)
+        self.positions[6, 2, 1] = Pawn('white', Vec3((6, 2, 0.5)), 0.75, -90, 0, 0)
+        self.positions[6, 3, 1] = Pawn('white', Vec3((6, 3, 0.5)), 0.75, -90, 0, 0)
         #   self.positions[6, 4, 1] = Pawn('white', Vec3((6, 4, 0.5)), 0.75, -90, 0, 0)
         #    self.positions[6, 5, 1] = Pawn('white', Vec3((6, 5, 0.5)), 0.75, -90, 0, 0)
         #  self.positions[6, 6, 1] = Pawn('white', Vec3((6, 6, 0.5)), 0.75, -90, 0, 0)
@@ -174,6 +174,7 @@ class classicBoard(IBoard):
         Entity(model='Board Sides.obj', texture='Wood', position=(7, 0, 1.01), rotation_x=90)
 
     def checkEmptyPosition(self, xPos, yPos):
+        print("CHECK EMPTY EN: ", xPos,yPos)
         if self.positions[xPos][yPos][1] is None:
             return True
         else:
@@ -181,14 +182,32 @@ class classicBoard(IBoard):
 
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
+        print("--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + " . " + str(yPos))
+
+        self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
+        print("--->ACTUALIZANDO PIEZA EN MATRIZ, DE: " + str(xPos) + " . " + str(yPos) + " HACIA ->" + str(
+            xTarget) + " . " + str(yTarget))
+
+        self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
+        print("--->REINICIANDO COLOR DE POSICION INICIAL: " + str(self.selectedPosition[0]) + " . " + str(
+            self.selectedPosition[1]))
+
+        self.pieceSelected = False
+        print("--->PIEZA SELECCIONADA: " + str(self.pieceSelected))
+
+        self.positions[xPos][yPos][1] = None
+        print("--->POSICION ORGINAL OCUPADA POR: " + str(self.positions[xPos][yPos][1]))
+        print("--->POSICION NUEVA OCUPADA POR: " + str(self.positions[xTarget][yTarget][1]))
+    """"
+        self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
         print(self.positions[xPos][yPos][1])
-        self.positions[xTarget][xTarget][1] = self.positions[xPos][yPos][1]
+        self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
         print(self.positions[xTarget][xTarget][1])
         self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
         print(self.positions[self.selectedPosition[0]][self.selectedPosition[1], 1])
         self.pieceSelected = False
         self.positions[xPos][yPos][1] = None
         print(self.positions[xPos][yPos][1])
-
+    """""
 
 
