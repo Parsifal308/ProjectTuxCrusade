@@ -119,9 +119,9 @@ class classicBoard(IBoard):
         print('Ubicando las piezas')
       #  self.positions[1, 0, 1] = Pawn('black', Vec3((1, 0, 0.5)), 0.75, 90, 90, 90)
        # self.positions[1, 1, 1] = Pawn('black', Vec3((1, 1, 0.5)), 0.75, 90, 90, 90)
-        #self.positions[1, 2, 1] = Pawn('black', Vec3((1, 2, 0.5)), 0.75, 90, 90, 90)
+        self.positions[1, 2, 1] = Pawn('black', Vec3((1, 2, 0.5)), 0.75, 90, 90, 90)
         #self.positions[1, 3, 1] = Pawn('black', Vec3((1, 3, 0.5)), 0.75, 90, 90, 90)
-        #  self.positions[1, 4, 1] = Pawn('black', Vec3((1, 4, 0.5)), 0.75, 90, 90, 90)
+        self.positions[1, 4, 1] = Pawn('black', Vec3((1, 4, 0.5)), 0.75, 90, 90, 90)
         #  self.positions[1, 5, 1] = Pawn('black', Vec3((1, 5, 0.5)), 0.75, 90, 90, 90)
         # self.positions[1, 6, 1] = Pawn('black', Vec3((1, 6, 0.5)), 0.75, 90, 90, 90)
         #   self.positions[1, 7, 1] = Pawn('black', Vec3((1, 7, 0.5)), 0.75, 90, 90, 90)
@@ -141,7 +141,7 @@ class classicBoard(IBoard):
         self.positions[6, 3, 1] = Pawn('white', Vec3((6, 3, 0.5)), 0.75, -90, 0, 0)
         #   self.positions[6, 4, 1] = Pawn('white', Vec3((6, 4, 0.5)), 0.75, -90, 0, 0)
         #    self.positions[6, 5, 1] = Pawn('white', Vec3((6, 5, 0.5)), 0.75, -90, 0, 0)
-        #  self.positions[6, 6, 1] = Pawn('white', Vec3((6, 6, 0.5)), 0.75, -90, 0, 0)
+        self.positions[6, 6, 1] = Pawn('white', Vec3((6, 6, 0.5)), 0.75, -90, 0, 0)
         # self.positions[6, 7, 1] = Pawn('white', Vec3((6, 7, 0.5)), 0.75, -90, 0, 0)
 
         self.positions[7, 0, 1] = Rook('white', Vec3((7, 0, 0.5)), 0.5, -90, 0, 0)
@@ -181,12 +181,22 @@ class classicBoard(IBoard):
             return False
 
     def checkTeam(self,xPos,yPos,xTarget,yTarget):
-        print("Pieza inicio: ",self.positions[xPos][yPos][1].team, "Pieza fin",self.positions[xTarget][yTarget][1].team)
+        print("Pieza inicio: ",self.positions[xPos][yPos][1].team)
+        print("Pieza fin",self.positions[xTarget][yTarget][1].team)
         if self.positions[xPos][yPos][1].team == self.positions[xTarget][yTarget][1].team:
             #si son del mismo equipo devuelve true
             return True
         else:
             return False
+
+    def capturarPieza(self,xPos,yPos, xTarget,yTarget):
+        print(self.positions[xTarget][yTarget][1].name)
+
+        #ESTE HACE LA MAGIAAA COME LA PIEZA y LA PONE AFUERA
+        self.positions[xTarget][yTarget][1].entity.position = Vec3(8, 8, 0.5)
+        print("--->CAPTURANDO PIEZA: " + str(xPos) + " . " + str(yPos))
+
+
 
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
