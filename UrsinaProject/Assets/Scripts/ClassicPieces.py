@@ -95,6 +95,7 @@ class Bishop(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.BishopMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'Bishop'
@@ -114,6 +115,7 @@ class Queen(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.QueenMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'Queen'
@@ -133,6 +135,7 @@ class King(IPiece):
     name = None
     value = None
     entity = None
+    moveSet = ClassicMovementSets.KingMovementSet()
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'King'

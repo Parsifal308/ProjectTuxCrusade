@@ -52,7 +52,7 @@ class boardPosition(Button):
                     self.color = color.white
 
                 elif self.parent.pieceSelected != (self.xIndex, self.yIndex):  # si hay una pieza seleccionada y se seleciona una posicion diferente
-
+                    #PAWN
                     if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Pawn':
 
                         if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().firstMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
@@ -66,28 +66,43 @@ class boardPosition(Button):
 
                         else:
                             print("MOVIMIENTO NO PERMITIDO")
-                    #TORRE
+                    #ROOK
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Rook':
                         if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO")
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
                         else:
                             print("MOVIMIENTO NO PERMITIDO")
-                    #ALFIL
+                    #BISHOP
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Bishop':
                         print("si intento mover un alfil a algun lado....")
                         # aca iria el checkeo con los metodos de la clase moveset
-                    #CABALLO
+                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().diagonalMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                            print("ES POSIBLE REALIZAR EL MOVIMIENTO DIAGONAL")
+                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
+                        else:
+                            print("MOVIMIENTO NO PERMITIDO")
+                    #KNIGHT
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Knight':
                         if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0],self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(), self.parent):
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO")
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex)
                         else:
                             print("MOVIMIENTO NO PERMITIDO")
-                    #REINA
+                    #QUEEN
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Queen':
                         print("si intento mover la reina a algun lado....")
                         # aca iria el checkeo con los metodos de la clase moveset
+                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().straightMovement (self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                            print("ES POSIBLE REALIZAR EL MOVIMIENTO")
+                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
+                        else:
+                            if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().diagonalMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex,self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(),self.parent):
+                                print("ES POSIBLE REALIZAR EL MOVIMIENTO")
+                                self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],
+                                                      self.xIndex, self.yIndex)
+                            else:
+                                print("MOVIMIENTO NO PERMITIDO")
                     #REY
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'King':
                         print("si intento mover el Rey a algun lado....")
@@ -176,4 +191,3 @@ class classicBoard(IBoard):
         self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
         self.pieceSelected = False
         self.positions[xPos][yPos][1] = None
-
