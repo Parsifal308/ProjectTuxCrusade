@@ -38,9 +38,22 @@ mainMenu.newGameButton.on_click = Func(mainMenu.myClick, newGameMenu)
 mainMenu.collectiblesButton.on_click = Func(mainMenu.myClick, collectibleMenu)
 mainMenu.exitGameButton.on_click = Func(sys.exit)
 settingsMenu.backButton.on_click = Func(settingsMenu.myClick, mainMenu)
-collectibleMenu.backButton.on_click = Func(collectibleMenu.myClick, mainMenu)
 newGameMenu.backButton.on_click = Func(newGameMenu.myClick, mainMenu)
 newGameMenu.startGameButton.on_click = Func(Game.startClassicGame, newGameMenu)
+collectibleMenu.backButton.on_click = Func(collectibleMenu.myClick, mainMenu)
+
+collectibleMenu.kingLinuxButton.on_click = Func(Game.selectedPieces,11)
+collectibleMenu.queenLinuxButton.on_click = Func(Game.selectedPieces,12)
+collectibleMenu.bishopLinuxButton.on_click = Func(Game.selectedPieces,13)
+collectibleMenu.horseLinuxButton.on_click = Func(Game.selectedPieces,14)
+collectibleMenu.towerLinuxButton.on_click = Func(Game.selectedPieces,15)
+collectibleMenu.pawnLinuxButton.on_click = Func(Game.selectedPieces,16)
+collectibleMenu.kingWindowsButton.on_click = Func(Game.selectedPieces,21)
+collectibleMenu.queenWindowsButton.on_click = Func(Game.selectedPieces,22)
+collectibleMenu.bishopWindowsButton.on_click = Func(Game.selectedPieces,23)
+collectibleMenu.horseWindowsButton.on_click = Func(Game.selectedPieces,24)
+collectibleMenu.towerWindowsButton.on_click = Func(Game.selectedPieces,25)
+collectibleMenu.pawnWindowsButton.on_click = Func(Game.selectedPieces,26)
 
 
 def update():
