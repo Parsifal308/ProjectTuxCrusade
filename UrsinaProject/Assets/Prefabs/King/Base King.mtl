@@ -1,12 +1,13 @@
-# Blender MTL File: 'King Tux One Mesh.blend'
+# Blender MTL File: 'Base King.blend'
 # Material Count: 1
 
-newmtl tux_penguin.003
+newmtl Material
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.000000
+Ni 1.450000
 d 1.000000
 illum 2
+map_Kd D:\\MisProyectos\\ProjectTuxCrusade\\ProjectTuxCrusade\\BlenderFiles\\Textures\\573bbe2afb7e13683406d103b02b0cf7.jpg
