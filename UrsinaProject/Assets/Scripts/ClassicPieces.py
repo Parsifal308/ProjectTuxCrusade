@@ -8,7 +8,14 @@ class Pawn(IPiece):
     name = None
     value = None
     entity = None
+    firstMovement = True
     moveSet = ClassicMovementSets.PawnMovementSet()
+
+    def setFirstMov(self, state):
+        self.firstMovement = state
+
+    def getFirstMov(self):
+        return self.firstMovement
 
     def __init__(self, team, vec3Pos, scale, rot_x, rot_y, rot_z):
         self.name = 'Pawn'

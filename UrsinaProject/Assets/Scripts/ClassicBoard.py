@@ -59,13 +59,15 @@ class boardPosition(Button):
 
                     if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'Pawn':
 
-                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().firstMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().firstMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getFirstMov()):
 
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO ESPECIAL INICIAL")
+                            self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
 
                         elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO NORMAL")
+                            self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
 
                         else:

@@ -5,22 +5,11 @@ class PawnMovementSet(Interfaces.IMovement):
     name = 'Classic pawn movement set'
 
     # recibe posicion actual, posicion objetivo, equipo correspondiente, el tablero y retorna TRUE si el movimiento es posible de realizar
-    def firstMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
-        if team == 'white':
-            if (xPosTarget, yPosTarget) == (xPos - 2, yPos):  # si dos casillas enfrente
-                if board.checkEmptyPosition(xPosTarget - 1, yPosTarget):  # si no hay nada delante
-                    if board.checkEmptyPosition(xPosTarget, yPosTarget):  # si no hay nada en la posicion destino
-                        return True
-                    else:
-                        return False
-                else:
-                    return False
-            else:
-                return False
-        else:
-            if team == 'black':
-                if (xPosTarget, yPosTarget) == (xPos + 2, yPos):
-                    if board.checkEmptyPosition(xPosTarget + 1, yPosTarget):  # si no hay nada delante
+    def firstMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board, firstMov):
+        if firstMov == True:
+            if team == 'white':
+                if (xPosTarget, yPosTarget) == (xPos - 2, yPos):  # si dos casillas enfrente
+                    if board.checkEmptyPosition(xPosTarget - 1, yPosTarget):  # si no hay nada delante
                         if board.checkEmptyPosition(xPosTarget, yPosTarget):  # si no hay nada en la posicion destino
                             return True
                         else:
@@ -30,7 +19,21 @@ class PawnMovementSet(Interfaces.IMovement):
                 else:
                     return False
             else:
-                return False
+                if team == 'black':
+                    if (xPosTarget, yPosTarget) == (xPos + 2, yPos):
+                        if board.checkEmptyPosition(xPosTarget + 1, yPosTarget):  # si no hay nada delante
+                            if board.checkEmptyPosition(xPosTarget, yPosTarget):  # si no hay nada en la posicion destino
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
+                    else:
+                        return False
+                else:
+                    return False
+        else:
+            return False
 
     def basicMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
         if team == 'white':
