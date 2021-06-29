@@ -1,6 +1,7 @@
 from ursina import *
 from Assets.Scripts import AppSystem, UserGraphicInterface, Game
 
+
 global mainMenu
 global settingsMenu
 global pauseMenu
@@ -14,6 +15,8 @@ def resetCamera():
 tuxCrusadeApp = Ursina() # SE DEFINE LA APP
 # ----------------------------------------------------------------------------------------------
 appWindow = AppSystem.appWindows()
+Game.music1 = Audio('Reloaded Installer 2.mp3', pitch=1, loop=True, autoplay=True)
+
 
 mainMenu= UserGraphicInterface.MainMenu()
 settingsMenu = UserGraphicInterface.SettingsMenu()
@@ -26,6 +29,7 @@ settingsMenu.parent = camera
 pauseMenu.parent = camera
 newGameMenu.parent = camera
 collectibleMenu.parent = camera
+
 
 resetCamera()
 settingsMenu.close()
@@ -41,9 +45,8 @@ settingsMenu.backButton.on_click = Func(settingsMenu.myClick, mainMenu)
 collectibleMenu.backButton.on_click = Func(collectibleMenu.myClick, mainMenu)
 newGameMenu.backButton.on_click = Func(newGameMenu.myClick, mainMenu)
 newGameMenu.startGameButton.on_click = Func(Game.startClassicGame, newGameMenu)
-
-
 def update():
+
     if mainMenu.stateVar:
         mainMenu.open()
     else:

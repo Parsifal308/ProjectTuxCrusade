@@ -15,14 +15,14 @@ class Pawn(IPiece):
         self.value = 1
         self.team = team
         if team == 'white':
-            self.entity = Entity(model='Base Pawn.obj', texture='Linux Penguin Texture.png', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
+            self.entity = Entity(model='Base Pawn.obj', texture='Stone Blocks 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'black':
             self.entity = Entity(model='Base Pawn.obj', texture='Dark Stone Wall 01', position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'blue':
             self.entity = Entity(model='Base Pawn.obj', color=color.blue, position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
         if team == 'red':
             self.entity = Entity(model='Base Pawn.obj', color=color.red, position=vec3Pos, scale=scale, rotation_x=rot_x, rotation_y=rot_y, rotation_z=rot_z)
-#Stone Blocks 01
+
 
 class Rook(IPiece):
     name = None

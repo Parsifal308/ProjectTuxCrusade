@@ -5,9 +5,13 @@ import numpy
 global whiteTurn
 global cameraParent
 global board
+global music1
 
 
-cameraParent = Entity( position=(3.5, 3.5, 0))
+cameraParent = Entity(position=(3.5, 3.5, 0))
+
+
+
 
 def startClassicGame(menu):
     whiteTurn = True
@@ -18,6 +22,7 @@ def startClassicGame(menu):
     board.SetBoard()
     board.SetPieces()
     menu.stateVar = False
+
 
     def playTurn():
         if whiteTurn:
