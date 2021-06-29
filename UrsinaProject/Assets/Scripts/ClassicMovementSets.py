@@ -84,89 +84,42 @@ class RookMovementSet(Interfaces.IMovement):
 
     def basicMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):  # chequea que entre dos casillas haya libertad de paso/no haya otras piezas
         directions=((-1,0),(0,-1),(1,0),(0,1))
-        validPositionX = xPos
-        validPositionY = yPos
         if (team=='white'):
             for d in directions:
                 for i in range(1,8):
                     endRow = xPos + d[0]*i
                     endCol = yPos + d[1]*i
                     if 0<=endRow<8 and 0<=endCol<8:
-                        if (xPosTarget, yPosTarget) == (xPos, endCol):
+                        if (xPosTarget, yPosTarget) == (endRow, yPos):
                             if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                                 return True
-                            elif(board.checkEmptyPosition(xPosTarget, yPosTarget) == False):
-                                if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
-                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                    return True
-                                else:
-                                    return False
                             else:
                                 break
-                    #######################################################################
-                        elif (xPosTarget, yPosTarget) == (endRow, yPos):
+                        elif (xPosTarget, yPosTarget) == (xPos, endCol):
                             if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                                 return True
-                            elif(board.checkEmptyPosition(xPosTarget, yPosTarget) == False):
-                                if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
-                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                    return True
-                                else:
-                                    return False
                             else:
                                 break
-
+                    else:
+                        break
         elif(team!='white'):
             for d in directions:
                 for i in range(1,8):
                     endRow = xPos + d[0]*i
                     endCol = yPos + d[1]*i
                     if 0<=endRow<8 and 0<=endCol<8:
-                        if (xPosTarget, yPosTarget) == (xPos, endCol):
+                        if (xPosTarget, yPosTarget) == (endRow, yPos):
                             if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                                 return True
-                            elif(board.checkEmptyPosition(xPosTarget, yPosTarget) == False):
-                                if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
-                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                    return True
-                                else:
-                                    return False
                             else:
                                 break
-                    #######################################################################
-                        elif (xPosTarget, yPosTarget) == (endRow, yPos):
+                        elif (xPosTarget, yPosTarget) == (xPos, endCol):
                             if (board.checkEmptyPosition(xPosTarget, yPosTarget) == True):  # SE CHEQUEAN LOS CASILLEROS
                                 return True
-                            elif(board.checkEmptyPosition(xPosTarget, yPosTarget) == False):
-                                if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
-                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                    return True
-                                else:
-                                    return False
                             else:
                                 break
-
-        """
-                print("SURR")
-                cantidadLugaresSur = xPosTarget - xPos
-                for i in range(1, cantidadLugaresSur + 1):
-                    # entramos si esta ocupado el lugar
-                    if not board.checkEmptyPosition(xPos + i, yPos):
-
-                        # entramos si es del mismo equipo
-                        if board.checkTeam(xPos, yPos, xPos + i, yPos):
-                            print("NO SE PUEDE MOVER; PIEZA DEL MISMO COLOR EN EL MEDIO")
-                            return False
-                        if not board.checkTeam(xPos, yPos, xPos + i, yPos):
-                            if (xPos + i != xPosTarget):
-                                print("NO SE PUEDE MOVER; PIEZA DE OTRO COLOR EN EL MEDIO")
-                                return False
-                            else:
-                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                return True
-                print("Devuelve TRUE SUR")
-                return True
-        """
+                    else:
+                        break
 
     def specialMovement(self):  # ENROQUE
         # CODIGO A INCLUIR
@@ -376,202 +329,6 @@ class KingMovementSet(Interfaces.IMovement):
     def move(self):
         pass
 
-    def straightMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
-        if team == 'white':
-            if xPosTarget==xPos+1 and yPos == yPosTarget: #SUR
-                if not board.checkEmptyPosition(xPos+1, yPos):
-                    if board.checkTeam(xPos,yPos,xPos+1,yPos):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos+1, yPos):
-                        if (xPos + 1 != xPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            elif(xPosTarget==xPos-1 and yPos == yPosTarget): #NORTE
-                if not board.checkEmptyPosition(xPos-1, yPos):
-                    if board.checkTeam(xPos, yPos, xPos-1, yPos):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos-1, yPos):
-                        if(xPos-1!=xPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos,yPos, xPosTarget,yPosTarget)
-                            return True
-                return True
-            elif (xPosTarget == xPos and yPos-1 == yPosTarget):
-                if not board.checkEmptyPosition(xPos, yPos-1):
-                    if board.checkTeam(xPos, yPos, xPos, yPos-1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos, yPos-1):
-                        if (yPos-1!= yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            elif (xPosTarget == xPos and yPos+1 == yPosTarget):
-                if not board.checkEmptyPosition(xPos, yPos+1):
-                    if board.checkTeam(xPos, yPos, xPos, yPos+1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos, yPos+1):
-                        if (yPos +1!= yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            else:
-                return False
-        elif team == 'black':
-            if xPosTarget == xPos + 1 and yPos == yPosTarget:  # SUR
-                if not board.checkEmptyPosition(xPos + 1, yPos):
-                    if board.checkTeam(xPos, yPos, xPos + 1, yPos):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos + 1, yPos):
-                        if (xPos + 1 != xPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            elif (xPosTarget == xPos - 1 and yPos == yPosTarget):  # NORTE
-                if not board.checkEmptyPosition(xPos - 1, yPos):
-                    if board.checkTeam(xPos, yPos, xPos - 1, yPos):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos - 1, yPos):
-                        if (xPos - 1 != xPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            elif (xPosTarget == xPos and yPos - 1 == yPosTarget):
-                if not board.checkEmptyPosition(xPos, yPos - 1):
-                    if board.checkTeam(xPos, yPos, xPos, yPos - 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos, yPos - 1):
-                        if (yPos - 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            elif (xPosTarget == xPos and yPos + 1 == yPosTarget):
-                if not board.checkEmptyPosition(xPos, yPos + 1):
-                    if board.checkTeam(xPos, yPos, xPos, yPos + 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos, yPos + 1):
-                        if (yPos + 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            else:
-                return False
-
-    def diagonalMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
-        if team == 'white':
-            if(yPosTarget == yPos+1) and (xPosTarget ==xPos+1):
-                if not board.checkEmptyPosition(xPos+1, yPos + 1):
-                    if board.checkTeam(xPos, yPos, xPos+1, yPos + 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos+1, yPos + 1):
-                        if (yPos + 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            if (yPosTarget == yPos+1) and (xPosTarget == xPos-1):
-                    if not board.checkEmptyPosition(xPos - 1, yPos + 1):
-                        if board.checkTeam(xPos, yPos, xPos-1, yPos + 1):
-                            return False
-                        if not board.checkTeam(xPos, yPos, xPos-1, yPos + 1):
-                            if (yPos + 1 != yPosTarget):
-                                return False
-                            else:
-                                board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                return True
-                    return True
-
-            if (yPosTarget == yPos-1) and (xPosTarget == xPos+1):
-                        if not board.checkEmptyPosition(xPos + 1, yPos - 1):
-                            if board.checkTeam(xPos, yPos, xPos+1, yPos - 1):
-                                return False
-                            if not board.checkTeam(xPos, yPos, xPos+1, yPos - 1):
-                                if (yPos - 1 != yPosTarget):
-                                    return False
-                                else:
-                                    board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                                    return True
-                        return True
-
-            if (yPosTarget == yPos-1) and (xPosTarget == xPos-1):
-                if not board.checkEmptyPosition(xPos - 1, yPos - 1):
-                    if board.checkTeam(xPos, yPos, xPos-1, yPos - 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos-1, yPos - 1):
-                        if (yPos - 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            else:
-                return False
-
-        elif team == 'black':
-            if (yPosTarget == yPos + 1) and (xPosTarget == xPos + 1):
-                if not board.checkEmptyPosition(xPos + 1, yPos + 1):
-                    if board.checkTeam(xPos, yPos, xPos + 1, yPos + 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos + 1, yPos + 1):
-                        if (yPos + 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            if (yPosTarget == yPos + 1) and (xPosTarget == xPos - 1):
-                if not board.checkEmptyPosition(xPos - 1, yPos + 1):
-                    if board.checkTeam(xPos, yPos, xPos - 1, yPos + 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos - 1, yPos + 1):
-                        if (yPos + 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-
-            if (yPosTarget == yPos - 1) and (xPosTarget == xPos + 1):
-                if not board.checkEmptyPosition(xPos + 1, yPos - 1):
-                    if board.checkTeam(xPos, yPos, xPos + 1, yPos - 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos + 1, yPos - 1):
-                        if (yPos - 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-
-            if (yPosTarget == yPos - 1) and (xPosTarget == xPos - 1):
-                if not board.checkEmptyPosition(xPos - 1, yPos - 1):
-                    if board.checkTeam(xPos, yPos, xPos - 1, yPos - 1):
-                        return False
-                    if not board.checkTeam(xPos, yPos, xPos - 1, yPos - 1):
-                        if (yPos - 1 != yPosTarget):
-                            return False
-                        else:
-                            board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
-                            return True
-                return True
-            else:
-                return False
 
 class QueenMovementSet(Interfaces.IMovement):
     name = 'Classic queen movement set'
@@ -960,7 +717,7 @@ class KnightMovementSet(Interfaces.IMovement):
                             if not board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
                                 board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
                                 return True
-
+                            
     def calculateMovement(self):
         pass
 

@@ -104,15 +104,8 @@ class boardPosition(Button):
                                 print("MOVIMIENTO NO PERMITIDO")
                     #REY
                     elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getName() == 'King':
-                        if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().straightMovement (self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(), self.parent):
-                            print("ES POSIBLE REALIZAR EL MOVIMIENTO")
-                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
-                        else:
-                            if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().diagonalMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex,self.yIndex, self.parent.positions[self.parent.selectedPosition[0],self.parent.selectedPosition[1], 1].getTeam(),self.parent):
-                                print("ES POSIBLE REALIZAR EL MOVIMIENTO")
-                                self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1],self.xIndex, self.yIndex)
-                            else:
-                                print("MOVIMIENTO NO PERMITIDO")
+                        print("si intento mover el Rey a algun lado....")
+                        # aca iria el checkeo con los metodos de la clase moveset
 
 
 class classicBoard(IBoard):
