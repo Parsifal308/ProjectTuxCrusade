@@ -235,16 +235,5 @@ class classicBoard(IBoard):
         print("--->POSICION ORGINAL OCUPADA POR: " + str(self.positions[xPos][yPos][1]))
         print("--->POSICION NUEVA OCUPADA POR: " + str(self.positions[xTarget][yTarget][1]))
 
-    """"
-        self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
-        print(self.positions[xPos][yPos][1])
-        self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
-        print(self.positions[xTarget][xTarget][1])
-        self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
-        print(self.positions[self.selectedPosition[0]][self.selectedPosition[1], 1])
-        self.pieceSelected = False
-        self.positions[xPos][yPos][1] = None
-        print(self.positions[xPos][yPos][1])
-    """""
 
 
