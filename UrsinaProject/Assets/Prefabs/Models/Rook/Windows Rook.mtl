@@ -1,0 +1,35 @@
+# Blender MTL File: 'Windows Rook ONE MESH.blend'
+# Material Count: 3
+
+newmtl Detail01
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\MisProyectos\\ProjectTuxCrusade\\ProjectTuxCrusade\\BlenderFiles\\Textures\\wildtextures_white-cracked-ceramic-tiles.jpg
+
+newmtl Detail02
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\MisProyectos\\ProjectTuxCrusade\\ProjectTuxCrusade\\BlenderFiles\\Textures\\Marble Seamless Texture #6701.jpg
+
+newmtl Detail03
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\MisProyectos\\ProjectTuxCrusade\\ProjectTuxCrusade\\BlenderFiles\\Textures\\wildtextures-generic-grey-concrete.jpg

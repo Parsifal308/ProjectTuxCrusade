@@ -21,6 +21,7 @@ class IBehaviour(ABC):
 
 # La base para crear piezas
 class IPiece(ABC):
+    id = None
     name = ''
     value = None
     team = ''
@@ -34,6 +35,15 @@ class IPiece(ABC):
 
     def getMoveSet(self):
         return self.moveSet
+
+    def setID(self, id):
+        self.id = id
+
+    def getID(self):
+        return self.id
+
+    def __del__(self):
+        del self
 
 class IBoard(ABC):
     name = None
@@ -52,6 +62,9 @@ class IBoard(ABC):
     @abstractmethod
     def movePiece(self):
         pass
+
+    def __del__(self):
+        del self
 
 
 class IMovement(ABC):
