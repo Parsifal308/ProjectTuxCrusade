@@ -29,24 +29,25 @@ class SettingsMenu(IMenu):
     languageButton = None  # idioma
 
     def __init__(self):
-        self.name = 'Creando menu de inicio del juego'
-        print(self.name)
         self.stateVar = False
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
                                  scale=(0.4, 0.085),
-                                 position=(0, 0.35))
+                                 position=(0, 0.35),
+                                 eternal =True)
         self.fullscreenButton = Button(text='Full Screen',
                                        text_color=color.white,
                                        color=color.gray,
                                        scale=(0.4, 0.085),
-                                       position=(0, 0.2))
+                                       position=(0, 0.2),
+                                       eternal =True)
         self.borderButton = Button(text='Border',
                                    text_color=color.white,
                                    color=color.gray,
                                    scale=(0.4, 0.085),
-                                   position=(0, 0.05))
+                                   position=(0, 0.05),
+                                   eternal =True)
         self.fpsCounterButton = Button(text='FPS Counter',
                                        text_color=color.white,
                                        color=color.gray,
@@ -82,25 +83,25 @@ class OnGame(IMenu):
     backButton = None  # Salir del menú de pausa y volver a la partida
 
     def __init__(self):
-        self.name = 'Creando el menú de pausa'
-        print(self.name)
         self.stateVar = False
         self.saveGameButton = Button(text='Save game',
                                      text_color=color.white,
-                                     color=color.gray,
+                                     color=color.dark_gray,
                                      scale=(0.4, 0.085),
-                                     position=(0, 0.35))
+                                     position=(0, 0.35),
+                                     disabled=True)
         self.settingsButton = Button(text='Settings',
                                      text_color=color.white,
-                                     color=color.gray,
+                                     color=color.dark_gray,
                                      scale=(0.4, 0.085),
-                                     position=(0, 0.2))
+                                     position=(0, 0.2),
+                                     disabled=True)
         self.exitGameButton = Button(text='Exit game',
                                      text_color=color.white,
                                      color=color.gray,
                                      scale=(0.4, 0.085),
                                      position=(0, 0.05))
-        self.backButton = Button(text='Back',
+        self.backButton = Button(text='Resume',
                                  text_color=color.white,
                                  color=color.gray,
                                  scale=(0.4, 0.085),
@@ -127,10 +128,9 @@ class MainMenu(IMenu):
     collectiblesButton = None
     settingsButton = None
     exitGameButton = None
+    creditsButton = None
 
     def __init__(self):
-        self.name = 'Creando menu de inicio del juego'
-        print(self.name)
         self.stateVar = True
         self.newGameButton = Button(text='New Game',
                                     text_color=color.white,
@@ -144,19 +144,26 @@ class MainMenu(IMenu):
                                          position=(0, 0.2))
         self.loadGameButton = Button(text='Load Game',
                                      text_color=color.white,
-                                     color=color.gray,
+                                     color=color.dark_gray,
                                      scale=(0.4, 0.075),
-                                     position=(0, 0.05))
+                                     position=(0, 0.05),
+                                     disabled=True)
         self.settingsButton = Button(text='Settings',
                                      text_color=color.white,
-                                     color=color.gray,
+                                     color=color.dark_gray,
                                      scale=(0.4, 0.075),
-                                     position=(0, -0.15))
+                                     position=(0, -0.15),
+                                     disabled=True)
         self.exitGameButton = Button(text='Exit',
                                      text_color=color.white,
                                      color=color.gray,
                                      scale=(0.4, 0.075),
                                      position=(0, -0.35))
+        self.creditsButton = Button(text="Credits",
+                                    text_color=color.white,
+                                    color=color.gray,
+                                    scale=(0.2, 0.05),
+                                    position=(0.6, -0.4))
 
     def open(self):
         self.newGameButton.enable()
@@ -164,6 +171,7 @@ class MainMenu(IMenu):
         self.loadGameButton.enable()
         self.settingsButton.enable()
         self.exitGameButton.enable()
+        self.creditsButton.enable()
 
     def close(self):
         self.newGameButton.disable()
@@ -171,6 +179,7 @@ class MainMenu(IMenu):
         self.loadGameButton.disable()
         self.settingsButton.disable()
         self.exitGameButton.disable()
+        self.creditsButton.disable()
 
 
 class CreateGameMenu(IMenu):
@@ -192,24 +201,28 @@ class CreateGameMenu(IMenu):
                                       position=(0, 0.35))
         self.difficultyButton = Button(text='Choose the difficulty',
                                        text_color=color.white,
-                                       color=color.gray,
+                                       color=color.dark_gray,
                                        scale=(0.4, 0.075),
-                                       position=(0, 0.2))
+                                       position=(0, 0.2),
+                                       disabled=True)
         self.chooseTeamButton = Button(text='Choose your team',
                                        text_color=color.white,
-                                       color=color.gray,
+                                       color=color.dark_gray,
                                        scale=(0.4, 0.075),
-                                       position=(0, 0.1))
+                                       position=(0, 0.1),
+                                       disabled=True)
         self.versusButton = Button(text='Choose your challenger',
                                    text_color=color.white,
-                                   color=color.gray,
+                                   color=color.dark_gray,
                                    scale=(0.4, 0.075,),
-                                   position=(0, 0.))
+                                   position=(0, 0.),
+                                       disabled=True)
         self.gameModeButton = Button(text='Choose your game mode',
                                      text_color=color.white,
-                                     color=color.gray,
+                                     color=color.dark_gray,
                                      scale=(0.4, 0.075),
-                                     position=(0, -0.1))
+                                     position=(0, -0.1),
+                                       disabled=True)
         self.backButton = Button(text='Back to menu',
                                  text_color=color.white,
                                  color=color.gray,
@@ -248,8 +261,6 @@ class CollectibleMenu(IMenu):
     backButton = None
 
     def __init__(self):
-        self.name = 'Creando menu de desbloqueables'
-        print(self.name)
         self.stateVar = False
         self.kingWindowsButton = Button(text='King Windows',
                                         text_color=color.white,
@@ -276,31 +287,31 @@ class CollectibleMenu(IMenu):
                                         color=color.gray,
                                         scale=(0.2, 0.2),
                                         position=(-0.1, 0.35))
-        self.kingLinuxButton = Button(text='King Linux',
-                                      text_color=color.white,
-                                      color=color.gray,
+        self.kingLinuxButton = Button(text_color=color.white,
+                                      color=color.white,
                                       scale=(0.2, 0.2),
-                                      position=(-0.7, 0.35))
-        self.queenLinuxButton = Button(text='Queen Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
+                                      position=(-0.7, 0.35),
+                                      texture='Linux King.png')
+        self.queenLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
                                        scale=(0.2, 0.2),
-                                       position=(-0.7, 0.1))
-        self.towerLinuxButton = Button(text='Tower Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
+                                       position=(-0.7, 0.1),
+                                       texture='Linux Queen.png')
+        self.towerLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
                                        scale=(0.2, 0.2),
-                                       position=(-0.7, -0.15))
-        self.horseLinuxButton = Button(text='Horse Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
+                                       position=(-0.7, -0.15),
+                                       texture='Linux Rook.png')
+        self.horseLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
                                        scale=(0.2, 0.2),
-                                       position=(-0.7, -0.40))
-        self.pawnLinuxButton = Button(text='Pawn Linux',
-                                      text_color=color.white,
-                                      color=color.gray,
+                                       position=(-0.7, -0.40),
+                                       texture='Linux Knight.png')
+        self.pawnLinuxButton = Button(text_color=color.white,
+                                      color=color.white,
                                       scale=(0.2, 0.2),
-                                      position=(-0.1, 0.1))
+                                      position=(-0.1, 0.1),
+                                      texture='Linux Pawn.png')
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
@@ -332,3 +343,169 @@ class CollectibleMenu(IMenu):
         self.towerWindowsButton.disable()
         self.horseWindowsButton.disable()
         self.pawnWindowsButton.disable()
+
+
+class creditsMenu(IMenu):
+    backButton = None
+    ursinaLogo = None
+    blenderLogo = None
+    name = 'Menu de Creditos'
+    text = None
+    textCredits = None
+    image1 = None
+    image2 = None
+
+
+    def __init__(self):
+        self.stateVar = False
+        self.textCredits = dedent('''
+        <scale:5><black>       CREDITS
+        <scale:3><black>              [-----------------------------------------------]
+        
+        
+        <scale:2><black>        Mayra Arevalos [<blue>github.com/Arevalomayra<black>]
+        
+        <scale:2><black>    Martin Ramirez [<blue>github.com/MartinGR-96<black>]
+        
+        <scale:2><black>            Guillermo Marinero [<blue>github.com/Parsifal308<black>]
+        
+        
+        <scale:3><black> Made with:                                           
+        ''')
+        self.text = Text(text=self.textCredits,
+                         origin=(0, 0),
+                         position=Vec3(-0.1, 0.125, 0),
+                         color=color.black,
+                         line_height=2)
+        self.ursinaLogo = Entity(model='cube',
+                                 texture='Ursina2.png',
+                                 position=Vec3(-1.25, -1.35, 10),
+                                 scale=Vec3(1.6, 1, 0.01),
+                                 rotation_x=10,
+                                 rotation_y=-1)
+        self.blenderLogo = Entity(model='cube',
+                                  texture='LogoBlender.png',
+                                  position=Vec3(1.25, -1.35, 10),
+                                  scale=Vec3(2.5, 1, 0.01),
+                                  rotation_x=10,
+                                  rotation_y=1)
+        self.backButton = Button(text='Back',
+                                 text_color=color.white,
+                                 color=color.gray,
+                                 scale=(0.2, 0.05),
+                                 position=(0.75, -0.45))
+        self.image1 = Entity(model='cube',
+                             texture='Tux King Credit.png',
+                             position=Vec3(2.75, 0.5, 10),
+                             scale=Vec3(1, 1.5, 0.0001),
+                             rotation_z=25)
+        self.image2 = Entity(model='cube',
+                             texture='Tux Knight Credit.png',
+                             position=Vec3(-2.95, 0.5, 10),
+                             scale=Vec3(1, 1.5, 0.0001),
+                             rotation_z=-25)
+    def close(self):
+        self.backButton.disable()
+        self.blenderLogo.disable()
+        self.ursinaLogo.disable()
+        self.text.disable()
+        self.image1.disable()
+        self.image2.disable()
+
+    def open(self):
+        self.backButton.enable()
+        self.ursinaLogo.enable()
+        self.blenderLogo.enable()
+        self.text.enable()
+        self.image1.enable()
+        self.image2.enable()
+
+class onGameHUD(IMenu):
+    turn = None
+    whiteScore = None
+    blackScore = None
+    move1 = None
+    move2 = None
+    move3 = None
+    move4 = None
+    move5 = None
+    helps = None
+
+    def __init__(self):
+        self.stateVar = False
+        self.turn = Text(text="White Player's Turn",
+                         origin=(0, 0),
+                         position=Vec3(0, 0.45, 0),
+                         color=color.white,
+                         line_height=2,
+                         scale=2)
+        self.whiteScore = Text(text="Score[0]",
+                               origin=(0, 0),
+                               position=Vec3(0.75, 0.45, 0),
+                               color=color.white,
+                               line_height=2,
+                               scale=2)
+        self.blackScore = Text(text="Score[0]",
+                               origin=(0, 0),
+                               position=Vec3(-0.75, 0.45, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=2)
+        self.helps = Text(text="Press 'A' & 'D' to Rotate",
+                               origin=(0, 0),
+                               position=Vec3(0.7, -0.475, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+        self.move1 = Text(text="[1] White Pawn -> box 5.7",
+                               origin=(0, 0),
+                               position=Vec3(-0.725, -0.475, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+        self.move2 = Text(text="[2] White Pawn -> box 5.7",
+                               origin=(0, 0),
+                               position=Vec3(-0.725, -0.425, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+        self.move3 = Text(text="[3] White Pawn -> box 5.7",
+                               origin=(0, 0),
+                               position=Vec3(-0.725, -0.375, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+        self.move4 = Text(text="[4] White Pawn -> box 5.7",
+                               origin=(0, 0),
+                               position=Vec3(-0.725, -0.325, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+        self.move5 = Text(text="[5] White Pawn -> box 5.7",
+                               origin=(0, 0),
+                               position=Vec3(-0.725, -0.275, 0),
+                               color=color.black,
+                               line_height=2,
+                               scale=1)
+
+    def close(self):
+        self.turn.disable()
+        self.whiteScore.disable()
+        self.blackScore.disable()
+        self.move1.disable()
+        self.move2.disable()
+        self.move3.disable()
+        self.move4.disable()
+        self.move5.disable()
+        self.helps.disable()
+
+    def open(self):
+        self.turn.enable()
+        self.whiteScore.enable()
+        self.blackScore.enable()
+        self.move1.enable()
+        self.move2.enable()
+        self.move3.enable()
+        self.move4.enable()
+        self.move5.enable()
+        self.helps.enable()

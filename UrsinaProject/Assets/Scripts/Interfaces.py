@@ -42,6 +42,9 @@ class IPiece(ABC):
     def getID(self):
         return self.id
 
+    def __del__(self):
+        del self
+
 class IBoard(ABC):
     name = None
     xSize = None
@@ -59,6 +62,9 @@ class IBoard(ABC):
     @abstractmethod
     def movePiece(self):
         pass
+
+    def __del__(self):
+        del self
 
 
 class IMovement(ABC):
