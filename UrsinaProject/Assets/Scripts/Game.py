@@ -77,26 +77,26 @@ def selectedPieces(number):
         print("Linux Pawn Selected")
     # PARA LAS PIEZAS NEGRAS SE MANTIENE EL MODELO POR DEFECTO AL NO ESTAR LA VERSION WINDOWS DISPONIBLE
     elif (number == 21):
-        modelo.update({"KingB": "Base King.obj"})
+        modelo.update({"KingB": "King Windows.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows King Selected")
     elif (number == 22):
-        modelo.update({"QueenB": "Base Queen.obj"})
+        modelo.update({"QueenB": "windows queen.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows Queen Selected")
     elif (number == 23):
-        modelo.update({"BishopB": "Base Bishop.obj"})
+        modelo.update({"BishopB": "Windows Bishop.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows Bishop Selected")
     elif (number == 24):
-        modelo.update({"KnightB": "Base Knight.obj"})
+        modelo.update({"KnightB": "Windows Knight.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows Knight Selected")
     elif (number == 25):
-        modelo.update({"RookB": "Base Rook.obj"})
+        modelo.update({"RookB": "Windows Rook.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows Rook Selected")
     elif (number == 26):
-        modelo.update({"PawnB": "Base Pawn.obj"})
+        modelo.update({"PawnB": "Windows Pawn.obj"})
         pieces.update({"modeloBasico": modelo})
         print("Windows Pawn Selected")

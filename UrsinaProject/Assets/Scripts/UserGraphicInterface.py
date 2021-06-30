@@ -277,62 +277,69 @@ class CollectibleMenu(IMenu):
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
-                                        position=(-0.4, 0.35))
+                                        position=(-0.4, 0.35),
+                                        texture='Windows King.png')
         self.queenWindowsButton = Button(text='Queen Windows',
                                          text_color=color.white,
                                          color=color.gray,
                                          scale=(0.2, 0.2),
-                                         position=(-0.4, 0.1))
+                                         position=(-0.4, 0.1),
+                                         texture='Windows Queen.png')
         self.bishopWindowsButton = Button(text='Bishop Windows',
-                                      text_color=color.white,
-                                      color=color.gray,
-                                      scale=(0.2, 0.2),
-                                      position=(-0.1, -0.15))
+                                          text_color=color.white,
+                                          color=color.gray,
+                                          scale=(0.2, 0.2),
+                                          position=(-0.1, -0.15),
+                                          texture='Windows Bishop.png')
         self.towerWindowsButton = Button(text='Tower Windows',
                                          text_color=color.white,
                                          color=color.gray,
                                          scale=(0.2, 0.2),
-                                         position=(-0.4, -0.15))
+                                         position=(-0.4, -0.15),
+                                         texture='Windows Rook.png')
         self.horseWindowsButton = Button(text='Horse Windows',
                                          text_color=color.white,
                                          color=color.gray,
                                          scale=(0.2, 0.2),
-                                         position=(-0.4, -0.40))
+                                         position=(-0.4, -0.40),
+                                         texture='Windows Knight.png')
         self.pawnWindowsButton = Button(text='Pawn Windows',
                                         text_color=color.white,
                                         color=color.gray,
                                         scale=(0.2, 0.2),
-                                        position=(-0.1, 0.35))
-        self.kingLinuxButton = Button(text='King Linux',
-                                      text_color=color.white,
-                                      color=color.gray,
+                                        position=(-0.1, 0.35),
+                                        texture='Windows Pawn.png'
+                                        )
+        self.kingLinuxButton = Button(text_color=color.white,
+                                      color=color.white,
                                       scale=(0.2, 0.2),
-                                      position=(-0.7, 0.35))
-        self.queenLinuxButton = Button(text='Queen Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
+                                      position=(-0.7, 0.35),
+                                      texture='Linux King.png')
+        self.queenLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
                                        scale=(0.2, 0.2),
-                                       position=(-0.7, 0.1))
-        self.bishopLinuxButton = Button(text='Bishop Linux',
-                                      text_color=color.white,
-                                      color=color.gray,
+                                       position=(-0.7, 0.1),
+                                       texture='Linux Queen.png')
+        self.bishopLinuxButton = Button(text_color=color.white,
+                                        color=color.white,
+                                        scale=(0.2, 0.2),
+                                        position=(-0.1, -0.40),
+                                        texture='Linux Bishop.png')
+        self.towerLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
+                                       scale=(0.2, 0.2),
+                                       position=(-0.7, -0.15),
+                                       texture='Linux Rook.png')
+        self.horseLinuxButton = Button(text_color=color.white,
+                                       color=color.white,
+                                       scale=(0.2, 0.2),
+                                       position=(-0.7, -0.40),
+                                       texture='Linux Knight.png')
+        self.pawnLinuxButton = Button(text_color=color.white,
+                                      color=color.white,
                                       scale=(0.2, 0.2),
-                                      position=(-0.1, -0.40))
-        self.towerLinuxButton = Button(text='Tower Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
-                                       scale=(0.2, 0.2),
-                                       position=(-0.7, -0.15))
-        self.horseLinuxButton = Button(text='Horse Linux',
-                                       text_color=color.white,
-                                       color=color.gray,
-                                       scale=(0.2, 0.2),
-                                       position=(-0.7, -0.40))
-        self.pawnLinuxButton = Button(text='Pawn Linux',
-                                      text_color=color.white,
-                                      color=color.gray,
-                                      scale=(0.2, 0.2),
-                                      position=(-0.1, 0.1))
+                                      position=(-0.1, 0.1),
+                                      texture='Linux Pawn.png')
         self.backButton = Button(text='Back',
                                  text_color=color.white,
                                  color=color.gray,
