@@ -58,6 +58,19 @@ creditsMenu.backButton.on_click = Func(creditsMenu.myClick, mainMenu)
 pauseMenu.backButton.on_click = Func(pauseMenu.close)
 pauseMenu.exitGameButton.on_click = Func(sys.exit)
 
+collectibleMenu.kingLinuxButton.on_click = Func(Game.selectedPieces,11)
+collectibleMenu.queenLinuxButton.on_click = Func(Game.selectedPieces,12)
+collectibleMenu.bishopLinuxButton.on_click = Func(Game.selectedPieces,13)
+collectibleMenu.horseLinuxButton.on_click = Func(Game.selectedPieces,14)
+collectibleMenu.towerLinuxButton.on_click = Func(Game.selectedPieces,15)
+collectibleMenu.pawnLinuxButton.on_click = Func(Game.selectedPieces,16)
+collectibleMenu.kingWindowsButton.on_click = Func(Game.selectedPieces,21)
+collectibleMenu.queenWindowsButton.on_click = Func(Game.selectedPieces,22)
+collectibleMenu.bishopWindowsButton.on_click = Func(Game.selectedPieces,23)
+collectibleMenu.horseWindowsButton.on_click = Func(Game.selectedPieces,24)
+collectibleMenu.towerWindowsButton.on_click = Func(Game.selectedPieces,25)
+collectibleMenu.pawnWindowsButton.on_click = Func(Game.selectedPieces,26)
+
 def update():
     if onGameHUD.stateVar:
         onGameHUD.open()
