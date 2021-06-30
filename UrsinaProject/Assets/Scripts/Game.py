@@ -12,7 +12,6 @@ cameraParent = Entity(position=(3.5, 3.5, 0))
 
 
 
-
 def startClassicGame(menu):
     whiteTurn = True
     camera.parent = cameraParent

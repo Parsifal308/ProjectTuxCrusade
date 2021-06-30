@@ -24,13 +24,12 @@ class boardPosition(Button):
     def input(self, key):
         if self.hovered:
             if key == 'left mouse down':
-                print("POSICION DE LA MATRIZ: " + str(self.xIndex) + "." + str(self.yIndex))
+                print("\nPOSICION DE LA MATRIZ: " + str(self.xIndex) + "." + str(self.yIndex))
                 if self.parent.positions[self.xIndex, self.yIndex, 1] is not None:
                     print("EN ESTA POSICION SE ENCUENTRA: " + self.parent.positions[self.xIndex, self.yIndex, 1].name)
                 else:
                     print("ESTA POSICION SE ENCUENTRA VACIA :(")
                 if not self.parent.pieceSelected:  # si no hay nada selecionado
-
 
                     if not self.parent.checkEmptyPosition(self.xIndex, self.yIndex):  # si no esta vacio
 
@@ -62,11 +61,13 @@ class boardPosition(Button):
                         if self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().firstMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getFirstMov()):
 
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO ESPECIAL INICIAL")
+                            self.parent.saveTurn(self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getID(),self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getTeam(),self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getName(), self.xIndex, self.yIndex)
                             self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
 
                         elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().basicMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
                             print("ES POSIBLE REALIZAR EL MOVIMIENTO NORMAL")
+                            self.parent.saveTurn(self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getID(), self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getTeam(), self.parent.positions[self.parent.selectedPosition[0]][self.parent.selectedPosition[1]][1].getName(), self.xIndex, self.yIndex)
                             self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
 
@@ -95,6 +96,7 @@ class boardPosition(Button):
 
 
 class classicBoard(IBoard):
+    movHistory = [[None, None, None, None, None]]
     whiteTurn = 'white'
     selectedPosition = None
     targetPosition = None
@@ -107,7 +109,7 @@ class classicBoard(IBoard):
         self.positions = numpy.empty(shape=(self.xSize, self.ySize, 2), dtype=Entity)
 
     def SetPieces(self):
-        print('Ubicando las piezas')
+        print('\nUbicando las piezas')
         self.positions[1, 0, 1] = Pawn('black', Vec3((1, 0, 0.5)), 0.75, 90, 90, 90)
         self.positions[1, 1, 1] = Pawn('black', Vec3((1, 1, 0.5)), 0.75, 90, 90, 90)
         self.positions[1, 2, 1] = Pawn('black', Vec3((1, 2, 0.5)), 0.75, 90, 90, 90)
@@ -144,8 +146,20 @@ class classicBoard(IBoard):
         self.positions[7, 6, 1] = Knight('white', Vec3((7, 6, 0.5)), 0.5, -90, 0, 0)
         self.positions[7, 7, 1] = Rook('white', Vec3((7, 7, 0.5)), 0.5, -90, 0, 0)
 
+        # SE SETTEAN LAS ID DE LAS PIEZAS
+        print('\n')
+        for i in range(2):
+            for j in range(8):
+                self.positions[i][j][1].setID(int( str(i) + str(j) ))
+                print("Pieza: " + self.positions[i][j][1].getTeam() + " " + self.positions[i][j][1].getName() + ", ID:  " + str(self.positions[i][j][1].getID()))
+
+        for i in range(6, 8):
+            for j in range(8):
+                self.positions[i][j][1].setID(int( str(i) + str(j) ))
+                print("Pieza: " + self.positions[i][j][1].getTeam() + " " + self.positions[i][j][1].getName() + ", ID:  " + str(self.positions[i][j][1].getID()))
+
     def SetBoard(self):
-        print('Construyendo tablero')  # settea las piezas del tablero en la parte [x,y,0] de la matriz
+        print('\nCONSTRUYENDO TABLERO')  # settea las piezas del tablero en la parte [x,y,0] de la matriz
         for i in range(len(self.positions)):
             for j in range(len(self.positions[i])):
                 if (j % 2) == 0:
@@ -172,21 +186,24 @@ class classicBoard(IBoard):
 
     def movePiece(self, xPos, yPos, xTarget, yTarget):
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
-        print("--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + " . " + str(yPos))
+        print("\n--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + "." + str(yPos))
 
         self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
-        print("--->ACTUALIZANDO PIEZA EN MATRIZ, DE: " + str(xPos) +" . " + str(yPos) +" HACIA ->" + str(xTarget) +" . "+ str(yTarget))
+        print("--->ACTUALIZANDO PIEZA EN MATRIZ, DE: " + str(xPos) +"." + str(yPos) +" HACIA -> " + str(xTarget) +"."+ str(yTarget))
 
         self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
-        print("--->REINICIANDO COLOR DE POSICION INICIAL: " + str(self.selectedPosition[0]) + " . " + str(self.selectedPosition[1]))
+        print("--->REINICIANDO COLOR DE POSICION INICIAL: " + str(self.selectedPosition[0]) + "." + str(self.selectedPosition[1]))
 
         self.pieceSelected = False
         print("--->PIEZA SELECCIONADA: " + str(self.pieceSelected))
 
         self.positions[xPos][yPos][1] = None
         print("--->POSICION ORGINAL OCUPADA POR: " + str(self.positions[xPos][yPos][1]))
-        print("--->POSICION NUEVA OCUPADA POR: " + str(self.positions[xTarget][yTarget][1]))
+        print("--->POSICION NUEVA OCUPADA POR ID:" + str(self.positions[xTarget][yTarget][1].getID()) + ' ' + str(self.positions[xTarget][yTarget][1].getTeam()) + ' ' + str(self.positions[xTarget][yTarget][1].getName()))
 
-
-
-
+    def saveTurn(self, pieceID, pieceTeam, pieceName, xPos, yPos):
+        print('\n')
+        turn = [pieceID, pieceTeam, pieceName, xPos, yPos]
+        print(turn)
+        self.movHistory.append(turn)
+        print(self.movHistory)
