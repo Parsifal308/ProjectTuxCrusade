@@ -23,5 +23,6 @@ def startClassicGame(menu):
         if whiteTurn:
             print('WHITE PLAYER TURN')
 
+
         else:
             print('BLACK PLAYER TURN')
