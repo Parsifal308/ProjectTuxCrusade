@@ -66,6 +66,11 @@ class boardPosition(Button):
                             self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
                             self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
 
+                        elif self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getMoveSet().captureMovement(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex, self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].getTeam(), self.parent):
+                            print("ES POSIBLE REALIZAR EL MOVIMIENTO DE CAPTURA")
+                            self.parent.positions[self.parent.selectedPosition[0], self.parent.selectedPosition[1], 1].setFirstMov(False)
+                            self.parent.movePiece(self.parent.selectedPosition[0], self.parent.selectedPosition[1], self.xIndex, self.yIndex)
+
                         else:
                             print("MOVIMIENTO NO PERMITIDO")
                     #ROOK

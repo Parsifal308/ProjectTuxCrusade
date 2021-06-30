@@ -47,7 +47,7 @@ class PawnMovementSet(Interfaces.IMovement):
         else:
             if team == 'black':
                 if (xPosTarget, yPosTarget) == (xPos + 1, yPos):
-                    if board.checkPosition(xPosTarget, yPosTarget):
+                    if board.checkEmptyPosition(xPosTarget, yPosTarget):
                         return True
                     else:
                         return False
@@ -61,14 +61,21 @@ class PawnMovementSet(Interfaces.IMovement):
 
     def captureMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
         if team == 'white':
-            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos -1:
-                #if board.checkEmptyPosition()
-                pass
-
-
+            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos - 1:
+                if not board.checkEmptyPosition(xPosTarget, yPosTarget):
+                    if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        return False
+                    else:
+                        board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                        return True
         elif team == 'black':
-            pass
-
+            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos + 1:
+                if not board.checkEmptyPosition(xPosTarget, yPosTarget):
+                    if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        return False
+                    else:
+                        board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                        return True
 
     def calculateMovement(self):
         pass
