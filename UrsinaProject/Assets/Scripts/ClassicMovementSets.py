@@ -60,22 +60,46 @@ class PawnMovementSet(Interfaces.IMovement):
         pass
 
     def captureMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
+        print("Xinicial: ", xPos, "Yinicial: ", yPos, "xFINAL: ", xPosTarget, "yFinal: ", yPosTarget, "Equipo: ", team,
+              board)
         if team == 'white':
-            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos - 1:
-                if not board.checkEmptyPosition(xPosTarget, yPosTarget):
+            if (xPosTarget == xPos - 1) and yPosTarget == yPos - 1:
+                print("Come a la izquierda - NO")
+                if not board.checkEmptyPosition(xPos - 1, yPos - 1):
                     if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
                         return False
                     else:
                         board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
                         return True
+            if (xPosTarget == xPos - 1) and yPosTarget == yPos + 1:
+                print("Come a la derecha - NE")
+                if not board.checkEmptyPosition(xPos - 1, yPos + 1):
+                    if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        return False
+                    else:
+                        board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                        return True
+            else:
+                return False
         elif team == 'black':
-            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos + 1:
-                if not board.checkEmptyPosition(xPosTarget, yPosTarget):
+            if (xPosTarget == xPos + 1) and yPosTarget == yPos - 1:
+                print("Come  - SO")
+                if not board.checkEmptyPosition(xPos + 1, yPos - 1):
                     if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
                         return False
                     else:
                         board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
                         return True
+            if (xPosTarget == xPos + 1) and yPosTarget == yPos + 1:
+                print("Come al - SE")
+                if not board.checkEmptyPosition(xPos + 1, yPos + 1):
+                    if board.checkTeam(xPos, yPos, xPosTarget, yPosTarget):
+                        return False
+                    else:
+                        board.capturarPieza(xPos, yPos, xPosTarget, yPosTarget)
+                        return True
+            else:
+                return False
 
     def calculateMovement(self):
         pass
