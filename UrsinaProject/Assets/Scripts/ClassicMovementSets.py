@@ -57,8 +57,18 @@ class PawnMovementSet(Interfaces.IMovement):
                 return False
 
     def specialMovement(self, xPos, yPos, xPosTarget, yPosTarget, team):
-
         pass
+
+    def captureMovement(self, xPos, yPos, xPosTarget, yPosTarget, team, board):
+        if team == 'white':
+            if (xPosTarget == xPos - 1 or xPosTarget == xPos + 1) and yPosTarget == yPos -1:
+                #if board.checkEmptyPosition()
+                pass
+
+
+        elif team == 'black':
+            pass
+
 
     def calculateMovement(self):
         pass
