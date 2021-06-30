@@ -209,9 +209,40 @@ class classicBoard(IBoard):
         self.positions[xTarget][yTarget][1].entity.position = Vec3(8, 8, 0.5)
         print("--->CAPTURANDO PIEZA: " + str(xPos) + " . " + str(yPos))
 
+    def cambiardeTurno(self,xPos,yPos):
+        print("JUGANDO: ",self.positions[xPos][yPos][1].team)
+        if (self.positions[xPos][yPos][1].team=="white"):
+            print(self.whiteTurn)
+            print("-----------------------")
+            print("TURNO PIEZAS NEGRAS")
+            print("-----------------------")
+            self.whiteTurn = "black"
+
+        if (self.positions[xPos][yPos][1].team == "black"):
+            print(self.whiteTurn)
+            print("-----------------------")
+            print("TURNO PIEZAS BLANCAS")
+            print("-----------------------")
+            self.whiteTurn = "white"
+            print(self.whiteTurn)
+
     def movePiece(self, xPos, yPos, xTarget, yTarget):
+        self.cambiardeTurno(xPos, yPos)
         self.positions[xPos][yPos][1].entity.position = Vec3(xTarget, yTarget, 0.5)
+        print("--->MOVIENDO MODELO DE PIEZA A POSICION: " + str(xPos) + " . " + str(yPos))
+
         self.positions[xTarget][yTarget][1] = self.positions[xPos][yPos][1]
+        print("--->ACTUALIZANDO PIEZA EN MATRIZ, DE: " + str(xPos) + " . " + str(yPos) + " HACIA ->" + str(
+            xTarget) + " . " + str(yTarget))
+
         self.positions[self.selectedPosition[0]][self.selectedPosition[1], 0].color = color.white
+        print("--->REINICIANDO COLOR DE POSICION INICIAL: " + str(self.selectedPosition[0]) + " . " + str(
+            self.selectedPosition[1]))
+
         self.pieceSelected = False
+        print("--->PIEZA SELECCIONADA: " + str(self.pieceSelected))
+
         self.positions[xPos][yPos][1] = None
+
+        print("--->POSICION ORGINAL OCUPADA POR: " + str(self.positions[xPos][yPos][1]))
+        print("--->POSICION NUEVA OCUPADA POR: " + str(self.positions[xTarget][yTarget][1]))
